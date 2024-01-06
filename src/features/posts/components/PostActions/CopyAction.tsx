@@ -1,7 +1,7 @@
 import { Tooltip } from '@chakra-ui/react'
 import { IconButton } from '@opengovsg/design-system-react'
 import { useState, type MouseEventHandler, useEffect } from 'react'
-import { BiLink } from 'react-icons/bi'
+import { BiRecycle } from 'react-icons/bi'
 
 interface CopyActionProps {
   postId: string
@@ -25,12 +25,12 @@ export const CopyAction = ({ postId }: CopyActionProps): JSX.Element => {
   }
 
   return (
-    <Tooltip label="Link copied!" hasArrow isOpen={isOpen}>
+    <Tooltip label="Retweeted!" hasArrow isOpen={isOpen}>
       <IconButton
         onMouseLeave={() => setIsOpen(false)}
         data-value="post-action"
         aria-label="Link to post"
-        icon={<BiLink fontSize="1.25rem" />}
+        icon={<BiRecycle fontSize="1.25rem" />}
         onClick={handleCopyLink}
       />
     </Tooltip>

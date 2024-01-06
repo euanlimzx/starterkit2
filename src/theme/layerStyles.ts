@@ -6,4 +6,9 @@ export const layerStyles: Record<string, SystemStyleInterpolation> = {
       bg: 'interaction.muted.main.hover',
     },
   },
+  retweetPost: {
+    _hover: {
+      bg: 'brand.secondary.100',
+    },
+  },
 }
