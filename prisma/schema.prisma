@@ -21,8 +21,8 @@ model VerificationToken {
 model Post {
   id           String       @id @default(cuid())
   title        String?      @db.Text
-  content      String       @db.Text
-  contentHtml  String       @map("content_html") @db.Text
+  content      String?      @db.Text
+  contentHtml  String?      @map("content_html") @db.Text
   authorId     String       @map("author_id")
   author       User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
   images       String[]
@@ -35,6 +35,12 @@ model Post {
   parent       Post?        @relation("PostReplies", fields: [parentPostId], references: [id])
   // The replies to this post.
   replies      Post[]       @relation("PostReplies")
+
+  //the id of the post im retweeting
+  retweetingId   String? @map("retweeting_id")
+  retweetingPost Post?   @relation("PostRetweets", fields: [retweetingId], references: [id])
+  //the posts that have retweeted this post
+  retweets       Post[]  @relation("PostRetweets")
 
   // To return `Date`s intact through the API we use transformers
   // https://trpc.io/docs/data-transformers

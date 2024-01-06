@@ -24,6 +24,23 @@ export const defaultPostSelect = Prisma.validator<Prisma.PostSelect>()({
   },
 })
 
+export const retweetPostSelect = Prisma.validator<Prisma.PostSelect>()({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+  authorId: true,
+  author: {
+    select: {
+      image: true,
+      name: true,
+      username: true,
+    },
+  },
+  retweetingPost: {
+    select: defaultPostSelect,
+  },
+})
+
 export const withCommentsPostSelect = Prisma.validator<Prisma.PostSelect>()({
   ...defaultPostSelect,
   replies: {

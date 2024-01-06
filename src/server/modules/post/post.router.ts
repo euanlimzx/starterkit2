@@ -7,7 +7,11 @@ import {
   listPostsInputSchema,
 } from '~/schemas/post'
 import { agnosticProcedure, protectedProcedure, router } from '~/server/trpc'
-import { defaultPostSelect, withCommentsPostSelect } from './post.select'
+import {
+  defaultPostSelect,
+  retweetPostSelect,
+  withCommentsPostSelect,
+} from './post.select'
 
 export const postRouter = router({
   likedByUser: agnosticProcedure
@@ -357,6 +361,26 @@ export const postRouter = router({
           },
         },
         select: defaultPostSelect,
+      })
+      return post
+    }),
+  addRetweet: protectedProcedure
+    .input(z.object({ retweetId: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const post = await ctx.prisma.post.create({
+        data: {
+          retweetingPost: {
+            connect: {
+              id: input.retweetId,
+            },
+          },
+          author: {
+            connect: {
+              id: ctx.user.id,
+            },
+          },
+        },
+        select: retweetPostSelect,
       })
       return post
     }),

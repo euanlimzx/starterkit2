@@ -5,7 +5,7 @@ import { BiHeart } from 'react-icons/bi'
 import { useMe } from '~/features/me/api'
 import { trpc, type RouterOutput } from '~/utils/trpc'
 import { AddCommentAction } from './AddCommentAction'
-import { CopyAction } from './CopyAction'
+import { RetweetAction } from './RetweetAction'
 import { DeletePostAction } from './DeletePostAction'
 
 export interface PostActionsProps {
@@ -84,7 +84,7 @@ export const PostActions = ({
         {post._count.likes}
       </Button>
       <AddCommentAction post={post} onSuccess={incrementReplyCount} />
-      <CopyAction postId={post.id} />
+      <RetweetAction postId={post.id} />
       {isOwnPost ? (
         <DeletePostAction postId={post.id} />
       ) : (
