@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { type ReactEventHandler } from 'react'
 import { type RouterOutput } from '~/utils/trpc'
-import { PostView, RetweetPostView } from './PostView'
+import { PostView } from './PostView'
 
 export interface PostProps {
   post: RouterOutput['post']['byUser']['posts'][number]
@@ -27,24 +27,12 @@ export const Post = ({ post, hideActions }: PostProps): JSX.Element => {
         containerProps={{
           onClick,
           py: '1.5rem',
-          layerStyle: 'post',
           tabIndex: 0,
           cursor: 'pointer',
           role: 'button',
         }}
         post={post}
         hideActions={hideActions}
-      />
-      <RetweetPostView
-        containerProps={{
-          onClick,
-          py: '1.5rem',
-          tabIndex: 0,
-          cursor: 'pointer',
-          role: 'button',
-        }}
-        post={post}
-        hideActions={true}
       />
     </>
   )

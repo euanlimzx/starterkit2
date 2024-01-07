@@ -16,6 +16,21 @@ export const defaultPostSelect = Prisma.validator<Prisma.PostSelect>()({
       username: true,
     },
   },
+  retweetingPost: {
+    select: {
+      title: true,
+      content: true,
+      contentHtml: true,
+      createdAt: true,
+      author: {
+        select: {
+          image: true,
+          name: true,
+          username: true,
+        },
+      },
+    },
+  },
   _count: {
     select: {
       replies: true,
