@@ -79,7 +79,7 @@ export const AppPublicHeader = ({
             <PublicHeaderLink key={index} {...link} />
           ))}
           <Button variant="solid" as={NextLink} href={SIGN_IN}>
-            Log in
+            Write a review (Sign in button)
           </Button>
         </HStack>
       </Flex>

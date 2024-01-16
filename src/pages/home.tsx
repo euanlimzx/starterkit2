@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import { SkeletonPostList } from '~/components/SkeletonPostList'
 import Suspense from '~/components/Suspense'
 import {
@@ -20,6 +20,12 @@ const Home: NextPageWithLayout = () => {
       left={{ base: 0, sm: undefined }}
       minH={`calc(100% - ${ADMIN_NAVBAR_HEIGHT})`}
     >
+      <Text>
+        This page should legit just be for me to write my review <br />
+        [TODO] Also need to find out how to "autofill" based on the HAS SMS URL
+        [TODO] Route for selecting clinic to give review for / fetch all clinics
+        [TODO] Route for actually creating a review
+      </Text>
       <AppGrid
         templateColumns={APP_GRID_TEMPLATE_COLUMN}
         px={{ base: '1rem', lg: 0 }}

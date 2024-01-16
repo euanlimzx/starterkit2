@@ -1,7 +1,6 @@
-import { Box, Flex, Icon, SimpleGrid, Stack, Text } from '@chakra-ui/react'
+import { Box, Flex, SimpleGrid, Stack, Text } from '@chakra-ui/react'
 import {
   Button,
-  Link,
   RestrictedFooter,
   useIsMobile,
 } from '@opengovsg/design-system-react'
@@ -17,7 +16,7 @@ import {
   SectionBodyText,
   SectionHeadingText,
 } from '~/features/landing/components'
-import { SIGN_IN } from '~/lib/routes'
+
 import { AppGrid } from '~/templates/AppGrid'
 
 const LandingPage = () => {
@@ -44,20 +43,22 @@ const LandingPage = () => {
               }}
               color="base.content.strong"
             >
-              Build production ready applications in minutes.
+              This is going to be our landing page for Femhealth.
             </Text>
             <SectionBodyText mt="1rem">
-              StarterApp is our baseline application created by StarterKit. You
-              can explore it to get a sense of basic functions and interactions.
+              Im just trying to map out a rough structure of how everything will
+              flow. <br />
+              [TODO FOR THIS PAGE] Make the header and footer a layout instead
+              of leaving it like this
             </SectionBodyText>
             <Box mt="2.5rem">
               <Button
                 isFullWidth={isMobile}
                 as={NextLink}
-                href={SIGN_IN}
+                href={'/clinics'}
                 rightIcon={<BiRightArrowAlt fontSize="1.5rem" />}
               >
-                Explore StarterApp
+                See available clinics
               </Button>
             </Box>
           </Flex>
@@ -108,11 +109,6 @@ const LandingPage = () => {
               Sign in with your email address, and start building your app
               immediately. It’s free, and requires no onboarding or approvals.
             </SectionBodyText>
-            <Box mt="2.5rem">
-              <Button as={NextLink} href={SIGN_IN}>
-                Get started
-              </Button>
-            </Box>
           </Flex>
           <Box flex={1} aria-hidden>
             <Image
@@ -132,14 +128,6 @@ const LandingPage = () => {
           Check out the <b>Open Government Products Suite</b>, and if you are a
           public officer you can mix and match from our set of productivity and
           collaboration tools.{' '}
-          <Link
-            as={NextLink}
-            href="https://www.open.gov.sg/products/overview"
-            isExternal
-            externalLinkIcon={<Icon as={BiRightArrowAlt} fontSize="1.5rem" />}
-          >
-            Full list of OGP products
-          </Link>
         </SectionBodyText>
       </FeatureSection>
       <LandingSection bg="base.content.strong" align="center">
@@ -155,11 +143,6 @@ const LandingPage = () => {
         >
           Start building your app now.
         </Text>
-        <Box mt="2rem">
-          <Button as={NextLink} href={SIGN_IN}>
-            Get started
-          </Button>
-        </Box>
       </LandingSection>
       <AppGrid bg="base.canvas.brand-subtle" px="1.5rem">
         <Box gridColumn={{ base: '1 / -1', md: '2 / 12' }}>
