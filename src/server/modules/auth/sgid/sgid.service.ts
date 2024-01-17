@@ -1,17 +1,17 @@
 import { type PrismaClient } from '@prisma/client'
 import { generateUsername } from '../../me/me.service'
-import { createPocdexAccountProviderId } from '../auth.util'
 import { type SgidSessionProfile } from './sgid.utils'
 import { AccountProvider } from '../auth.constants'
 
 export const upsertSgidAccountAndUser = async ({
   prisma,
-  pocdexEmail,
+  email,
   name,
   sub,
 }: {
   prisma: PrismaClient
-  pocdexEmail: NonNullable<SgidSessionProfile['list'][number]['work_email']>
+  email: NonNullable<SgidSessionProfile['email']>
+
   name: SgidSessionProfile['name']
   sub: SgidSessionProfile['sub']
 }) => {
@@ -19,14 +19,14 @@ export const upsertSgidAccountAndUser = async ({
     // Create user from email
     const user = await tx.user.upsert({
       where: {
-        email: pocdexEmail,
+        email,
       },
       update: {},
       create: {
-        email: pocdexEmail,
+        email,
         emailVerified: new Date(),
         name,
-        username: generateUsername(pocdexEmail),
+        username: generateUsername(email),
       },
     })
 
@@ -34,26 +34,22 @@ export const upsertSgidAccountAndUser = async ({
     if (!user.username) {
       await tx.user.update({
         where: { id: user.id },
-        data: { username: generateUsername(pocdexEmail) },
+        data: { username: generateUsername(email) },
       })
     }
 
     // Link user to account
-    const pocdexProviderAccountId = createPocdexAccountProviderId(
-      sub,
-      pocdexEmail
-    )
     await prisma.accounts.upsert({
       where: {
         provider_providerAccountId: {
-          provider: AccountProvider.SgidPocdex,
-          providerAccountId: pocdexProviderAccountId,
+          provider: AccountProvider.Sgid,
+          providerAccountId: sub,
         },
       },
       update: {},
       create: {
-        provider: AccountProvider.SgidPocdex,
-        providerAccountId: pocdexProviderAccountId,
+        provider: AccountProvider.Sgid,
+        providerAccountId: sub,
         userId: user.id,
       },
     })

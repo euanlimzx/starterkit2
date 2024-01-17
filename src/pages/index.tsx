@@ -18,11 +18,69 @@ import {
 } from '~/features/landing/components'
 
 import { AppGrid } from '~/templates/AppGrid'
+import { trpc } from '~/utils/trpc'
 
 const LandingPage = () => {
   const isMobile = useIsMobile()
+  //create Clinic
+  const createClinicAPI = trpc.clinic.createClinic.useMutation()
+  const createClinic = () =>
+    createClinicAPI.mutate({
+      name: 'Aljunied Clinic',
+    })
+  //create a Review
+  const createReviewAPI = trpc.review.createReview.useMutation()
+  const createReview = () => {
+    createReviewAPI.mutate({
+      content: 'Wow this clinic is great',
+      verified: true,
+      clinicId: 'clrhbsnbr0008bod8zsz91io7',
+      userId: 'clrgot2io0000m9mm1cm0si3w',
+    })
+  }
+  //fetch Users
+  const { data: userData, refetch: refetchUsers } =
+    trpc.review.fetchUsers.useQuery()
+  const fetchUsers = async () => {
+    await refetchUsers()
+    console.log(userData)
+  }
+  //fetch Clinics
+  const { data: clinicData, refetch: refetchClinics } =
+    trpc.clinic.fetchClinics.useQuery()
+  const fetchClinics = async () => {
+    await refetchClinics()
+    console.log(clinicData)
+  }
+  //fetch Clinic by Id
+  const { data: clinicByIdData, refetch: refectchClinicById } =
+    trpc.clinic.fetchClinicById.useQuery({
+      clinicId: 'clrhbsnbr0008bod8zsz91io7',
+    })
+  const fetchClinicById = async () => {
+    await refectchClinicById()
+    console.log(clinicByIdData)
+  }
   return (
     <>
+      <h1>these buttons are here just to test my api routes hehe</h1>
+      <Stack gap={4} direction={'row'}>
+        <Button onClick={fetchUsers}>
+          Click here to fetch a list of users
+        </Button>
+        <Button onClick={fetchClinics}>
+          Click here to fetch a list of Clinics
+        </Button>
+        <Button onClick={fetchClinicById}>
+          Click here to fetch a clinic based on a particular id
+        </Button>
+      </Stack>
+      <br />
+      <Stack gap={4} direction={'row'}>
+        <Button onClick={createClinic}>Click here to create a clinic</Button>
+        <Button onClick={createReview}>Click here to create a Review</Button>
+      </Stack>
+
       <AppPublicHeader />
       <LandingSection
         bg="base.canvas.brand-subtle"

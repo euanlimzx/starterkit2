@@ -6,11 +6,7 @@ import { env } from '~/env.mjs'
  * Remember to also update the scope in sgID's developer portal:
  * https://developer.id.gov.sg/dashboard.
  */
-export const APP_SGID_SCOPE = [
-  'openid',
-  'myinfo.name',
-  'pocdex.public_officer_details',
-]
+export const APP_SGID_SCOPE = ['openid', 'myinfo.name', 'myinfo.email']
 
 const sgidOptions = {
   clientId: env.SGID_CLIENT_ID,
