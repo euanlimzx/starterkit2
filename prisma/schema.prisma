@@ -18,64 +18,82 @@ model VerificationToken {
   expires    DateTime
 }
 
-model Post {
-  id           String       @id @default(cuid())
-  title        String?      @db.Text
-  content      String?      @db.Text
-  contentHtml  String?      @map("content_html") @db.Text
-  authorId     String       @map("author_id")
-  author       User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  images       String[]
-  likes        LikedPosts[]
-  // This features the self-relation Prisma concept, specifically a one-to-many self relation.
-  // https://www.prisma.io/docs/concepts/components/prisma-schema/relations/self-relations
-  parentPostId String?      @map("parent_post_id")
-  // The parent post of this post, if it is a reply.
-  // @relation("PostToParent") is the name of the relation. See relation documentation below for more info.
-  parent       Post?        @relation("PostReplies", fields: [parentPostId], references: [id])
-  // The replies to this post.
-  replies      Post[]       @relation("PostReplies")
+// model Post {
+//   id           String       @id @default(cuid())
+//   title        String?      @db.Text
+//   content      String?      @db.Text
+//   contentHtml  String?      @map("content_html") @db.Text
+//   authorId     String       @map("author_id")
+//   author       User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+//   images       String[]
+//   likes        LikedPosts[]
+//   // This features the self-relation Prisma concept, specifically a one-to-many self relation.
+//   // https://www.prisma.io/docs/concepts/components/prisma-schema/relations/self-relations
+//   parentPostId String?      @map("parent_post_id")
+//   // The parent post of this post, if it is a reply.
+//   // @relation("PostToParent") is the name of the relation. See relation documentation below for more info.
+//   parent       Post?        @relation("PostReplies", fields: [parentPostId], references: [id])
+//   // The replies to this post.
+//   replies      Post[]       @relation("PostReplies")
 
-  //the id of the post im retweeting
-  retweetingId   String? @map("retweeting_id")
-  retweetingPost Post?   @relation("PostRetweets", fields: [retweetingId], references: [id])
-  //the posts that have retweeted this post
-  retweets       Post[]  @relation("PostRetweets")
+//   //the id of the post im retweeting
+//   retweetingId   String? @map("retweeting_id")
+//   retweetingPost Post?   @relation("PostRetweets", fields: [retweetingId], references: [id])
+//   //the posts that have retweeted this post
+//   retweets       Post[]  @relation("PostRetweets")
 
-  // To return `Date`s intact through the API we use transformers
-  // https://trpc.io/docs/data-transformers
-  // This is unique so it can be used for cursor-based pagination
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
-  deletedAt DateTime? @map("deleted_at") @db.Timestamp
+//   // To return `Date`s intact through the API we use transformers
+//   // https://trpc.io/docs/data-transformers
+//   // This is unique so it can be used for cursor-based pagination
+//   createdAt DateTime  @default(now()) @map("created_at")
+//   updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+//   deletedAt DateTime? @map("deleted_at") @db.Timestamp
 
-  @@index([parentPostId])
-  @@index([parentPostId, deletedAt, id])
-  @@index([deletedAt])
-  @@index([createdAt])
+//   @@index([parentPostId])
+//   @@index([parentPostId, deletedAt, id])
+//   @@index([deletedAt])
+//   @@index([createdAt])
+// }
+
+// model LikedPosts {
+//   post      Post     @relation(fields: [postId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+//   postId    String   @map("post_id")
+//   user      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+//   userId    String   @map("user_id")
+//   createdAt DateTime @default(now()) @map("created_at")
+
+//   @@id([postId, userId])
+// }
+
+model Clinic {
+  id      String   @id @default(cuid())
+  name    String   @unique
+  reviews Review[]
 }
 
-model LikedPosts {
-  post      Post     @relation(fields: [postId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  postId    String   @map("post_id")
-  user      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  userId    String   @map("user_id")
-  createdAt DateTime @default(now()) @map("created_at")
-
-  @@id([postId, userId])
+model Review {
+  id       String  @id @default(cuid())
+  verified Boolean //whether or not its an anonymous review
+  content  String
+  clinic   Clinic  @relation(fields: [clinicId], references: [id])
+  clinicId String
+  user     User    @relation(fields: [userId], references: [id])
+  userId   String
 }
 
 model User {
-  id            String       @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  username      String?      @unique
-  email         String?      @unique
-  emailVerified DateTime?    @map("email_verified")
+  username      String?    @unique
+  email         String?    @unique
+  emailVerified DateTime?  @map("email_verified")
   image         String?
   bio           String?
-  posts         Post[]
-  likedPosts    LikedPosts[]
+  // posts         Post[]
+  // likedPosts    LikedPosts[]
+  // have to clean up the other fields another time, now its okay since they are all optional fields
   accounts      Accounts[]
+  reviews       Review[]
 }
 
 model Accounts {
