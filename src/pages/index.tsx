@@ -1,12 +1,24 @@
-import { Box, Flex, SimpleGrid, Stack, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  SimpleGrid,
+  Stack,
+  Text,
+  Card,
+  CardHeader,
+  Tag,
+  CardBody,
+  Heading,
+} from '@chakra-ui/react'
 import {
   Button,
   RestrictedFooter,
   useIsMobile,
+  MultiSelect,
+  Toggle,
 } from '@opengovsg/design-system-react'
 import Image from 'next/image'
 import NextLink from 'next/link'
-import { BiRightArrowAlt } from 'react-icons/bi'
 import { OgpLogo } from '~/components/Svg/OgpLogo'
 import {
   AppPublicHeader,
@@ -16,6 +28,8 @@ import {
   SectionBodyText,
   SectionHeadingText,
 } from '~/features/landing/components'
+import ClinicList from '~/components/Clinic/ClinicList'
+import { BiMapPin } from 'react-icons/bi'
 
 import { AppGrid } from '~/templates/AppGrid'
 import { trpc } from '~/utils/trpc'
@@ -61,9 +75,10 @@ const LandingPage = () => {
     await refectchClinicById()
     console.log(clinicByIdData)
   }
+
   return (
     <>
-      <h1>these buttons are here just to test my api routes hehe</h1>
+      {/* <h1>these buttons are here just to test my api routes hehe</h1>
       <Stack gap={4} direction={'row'}>
         <Button onClick={fetchUsers}>
           Click here to fetch a list of users
@@ -79,14 +94,10 @@ const LandingPage = () => {
       <Stack gap={4} direction={'row'}>
         <Button onClick={createClinic}>Click here to create a clinic</Button>
         <Button onClick={createReview}>Click here to create a Review</Button>
-      </Stack>
+      </Stack> */}
 
       <AppPublicHeader />
-      <LandingSection
-        bg="base.canvas.brand-subtle"
-        pt={{ base: '2rem', md: 0 }}
-        px={0}
-      >
+      <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: '4rem' }} px={0}>
         <Stack
           direction={{ base: 'column', lg: 'row' }}
           align="center"
@@ -101,7 +112,7 @@ const LandingPage = () => {
               }}
               color="base.content.strong"
             >
-              This is going to be our landing page for Femhealth.
+              Find a doctor for your womens&apos; health concerns.
             </Text>
             <SectionBodyText mt="1rem">
               Im just trying to map out a rough structure of how everything will
@@ -110,27 +121,83 @@ const LandingPage = () => {
               of leaving it like this
             </SectionBodyText>
             <Box mt="2.5rem">
-              <Button
-                isFullWidth={isMobile}
-                as={NextLink}
-                href={'/clinics'}
-                rightIcon={<BiRightArrowAlt fontSize="1.5rem" />}
-              >
-                See available clinics
+              <MultiSelect //need to fix this lol
+                placeholder={'Select a region'}
+                items={[
+                  {
+                    value: 'Anywhere in Singapore',
+                  },
+                  {
+                    value: 'Central',
+                  },
+                  {
+                    value: 'North',
+                  },
+                  {
+                    value: 'East',
+                  },
+                  {
+                    value: 'Northeast',
+                  },
+                  {
+                    value: 'West',
+                  },
+                ]}
+                name="RegionSelect"
+                onChange={function Ha() {}}
+                values={[]}
+              />
+            </Box>
+
+            <Box mt="2.5rem">
+              <Button isFullWidth={isMobile} as={NextLink} href={'/clinics'}>
+                Find a clinic
               </Button>
             </Box>
           </Flex>
-          <Flex flex={1} aria-hidden justify="right">
-            <Image
-              src="/assets/landing-banner.svg"
-              alt="StarterApp hero"
-              width={480}
-              height={400}
-            />
+        </Stack>
+      </LandingSection>
+      <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: '4rem' }} px={0}>
+        <Stack
+          direction={{ base: 'column', lg: 'row' }}
+          align="center"
+          spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
+        >
+          <Flex flexDir="column" flex={1}>
+            <Text
+              as="h1"
+              textStyle={{
+                base: 'responsive-display.heavy',
+                md: 'responsive-display.heavy-480',
+              }}
+              color="base.content.strong"
+            >
+              Find a clinic that meets your needs based on 200+ reviews
+            </Text>
+            <SectionBodyText mt="1rem">
+              Select a clinic to read their reviews
+            </SectionBodyText>
+            <Box pt={'2rem'}>
+              <Toggle
+                description=""
+                label="View clinics with female practitioners"
+              />
+              <ClinicList />
+              <Box mt="2.5rem">
+                <Button
+                  isFullWidth={isMobile}
+                  as={NextLink}
+                  href={'/clinics'}
+                  variant="outline"
+                >
+                  Show me more clinics
+                </Button>
+              </Box>
+            </Box>
           </Flex>
         </Stack>
       </LandingSection>
-      <LandingSection>
+      {/* <LandingSection>
         <SectionHeadingText>Our application features</SectionHeadingText>
         <SimpleGrid
           columns={{ base: 1, md: 2, lg: 3 }}
@@ -201,8 +268,8 @@ const LandingPage = () => {
         >
           Start building your app now.
         </Text>
-      </LandingSection>
-      <AppGrid bg="base.canvas.brand-subtle" px="1.5rem">
+      </LandingSection> */}
+      {/* <AppGrid bg="base.canvas.brand-subtle" px="1.5rem">
         <Box gridColumn={{ base: '1 / -1', md: '2 / 12' }}>
           <RestrictedFooter
             // This component can only be used if this is an application created by OGP.
@@ -213,7 +280,7 @@ const LandingPage = () => {
             appLink="/"
           />
         </Box>
-      </AppGrid>
+      </AppGrid> */}
     </>
   )
 }
