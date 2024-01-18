@@ -1,16 +1,19 @@
 /**
  * This file contains the root router of your tRPC-backend
  */
-import { publicProcedure, router } from '../trpc'
-import { postRouter } from './post/post.router'
-import { meRouter } from './me/me.router'
-import { storageRouter } from './storage/storage.router'
+import { router } from '../trpc'
 import { authRouter } from './auth/auth.router'
-import { threadRouter } from './thread/thread.router'
+import { clinicRouter } from './clinic/clinic.router'
+import { reviewRouter } from './review/review.router'
+import { meRouter } from './me/me.router'
 import { profileRouter } from './profile/profile.router'
-
+import { postRouter } from './post/post.router'
+import { threadRouter } from './thread/thread.router'
+import { storageRouter } from './storage/storage.router'
 export const appRouter = router({
-  healthcheck: publicProcedure.query(() => 'yay!'),
+  review: reviewRouter,
+  clinic: clinicRouter,
+  // healthcheck: publicProcedure.query(() => 'yay!'),
   me: meRouter,
   auth: authRouter,
   profile: profileRouter,

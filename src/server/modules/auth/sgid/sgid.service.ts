@@ -11,7 +11,6 @@ export const upsertSgidAccountAndUser = async ({
 }: {
   prisma: PrismaClient
   email: NonNullable<SgidSessionProfile['email']>
-
   name: SgidSessionProfile['name']
   sub: SgidSessionProfile['sub']
 }) => {
@@ -39,7 +38,7 @@ export const upsertSgidAccountAndUser = async ({
     }
 
     // Link user to account
-    await prisma.accounts.upsert({
+    await tx.accounts.upsert({
       where: {
         provider_providerAccountId: {
           provider: AccountProvider.Sgid,

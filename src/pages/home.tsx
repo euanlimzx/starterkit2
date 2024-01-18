@@ -43,9 +43,7 @@ const Home: NextPageWithLayout = () => {
         templateColumns={APP_GRID_TEMPLATE_COLUMN}
         px={{ base: '1rem', lg: 0 }}
       >
-        <Suspense fallback={<SkeletonPostList />}>
-          <PostList />
-        </Suspense>
+        hello world
       </AppGrid>
     </Flex>
   )

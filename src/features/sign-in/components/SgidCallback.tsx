@@ -18,27 +18,17 @@ export const SgidCallback = (): JSX.Element => {
     query: { code, state },
   } = router
 
-  const [{ redirectUrl, selectProfileStep }] =
-    trpc.auth.sgid.callback.useSuspenseQuery(
-      { code: String(code), state: String(state) },
-      { staleTime: Infinity }
-    )
+  const [{ redirectUrl }] = trpc.auth.sgid.callback.useSuspenseQuery(
+    { code: String(code), state: String(state) },
+    { staleTime: Infinity }
+  )
 
   useEffect(() => {
-    if (!selectProfileStep) {
-      setHasLoginStateFlag()
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      utils.me.get.invalidate()
-    }
+    setHasLoginStateFlag()
+    void utils.me.get.invalidate()
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     router.replace(redirectUrl)
-  }, [
-    redirectUrl,
-    router,
-    selectProfileStep,
-    setHasLoginStateFlag,
-    utils.me.get,
-  ])
+  }, [redirectUrl, router, setHasLoginStateFlag, utils.me.get])
 
   return <FullscreenSpinner />
 }
