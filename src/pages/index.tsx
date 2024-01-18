@@ -16,6 +16,7 @@ import {
   useIsMobile,
   MultiSelect,
   Toggle,
+  RestrictedGovtMasthead,
 } from '@opengovsg/design-system-react'
 import Image from 'next/image'
 import NextLink from 'next/link'
@@ -96,11 +97,12 @@ const LandingPage = () => {
         <Button onClick={createReview}>Click here to create a Review</Button>
       </Stack> */}
 
-      <AppPublicHeader />
-      <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: '4rem' }} px={0}>
+      {/* <AppPublicHeader /> */}
+      <RestrictedGovtMasthead />
+      <LandingSection bg="#FFFFFF" pt={{ base: '5rem', md: '6rem' }} px={0}>
         <Stack
           direction={{ base: 'column', lg: 'row' }}
-          align="center"
+          align="left"
           spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
         >
           <Flex flexDir="column" flex={1}>
@@ -112,13 +114,10 @@ const LandingPage = () => {
               }}
               color="base.content.strong"
             >
-              Find a doctor for your womens&apos; health concerns.
+              Find a doctor for your women&apos;s health concerns.
             </Text>
             <SectionBodyText mt="1rem">
-              Im just trying to map out a rough structure of how everything will
-              flow. <br />
-              [TODO FOR THIS PAGE] Make the header and footer a layout instead
-              of leaving it like this
+              [TODO FOR THIS PAGE] Make the header a layout instead
             </SectionBodyText>
             <Box mt="2.5rem">
               <MultiSelect //need to fix this lol
@@ -149,7 +148,7 @@ const LandingPage = () => {
               />
             </Box>
 
-            <Box mt="2.5rem">
+            <Box mt="1rem">
               <Button isFullWidth={isMobile} as={NextLink} href={'/clinics'}>
                 Find a clinic
               </Button>
@@ -164,17 +163,10 @@ const LandingPage = () => {
           spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
         >
           <Flex flexDir="column" flex={1}>
-            <Text
-              as="h1"
-              textStyle={{
-                base: 'responsive-display.heavy',
-                md: 'responsive-display.heavy-480',
-              }}
-              color="base.content.strong"
-            >
+            <Text as="h1" textStyle={'h4'} color="base.content.strong">
               Find a clinic that meets your needs based on 200+ reviews
             </Text>
-            <SectionBodyText mt="1rem">
+            <SectionBodyText mt="0.5rem">
               Select a clinic to read their reviews
             </SectionBodyText>
             <Box pt={'2rem'}>

@@ -12,11 +12,11 @@ import { BiMapPin } from 'react-icons/bi'
 
 const ClinicCard = () => {
   return (
-    <Box p={'0.5rem'}>
+    <Box py={'0.5rem'}>
       <Card shadow="md">
         <CardBody>
           <Box>
-            <Text fontSize="xs" color={'green.300'}>
+            <Text fontSize="sm" color={'green.500'}>
               98% Positive Reviews
             </Text>
             <Heading size="md" my={'5px'}>
@@ -27,9 +27,7 @@ const ClinicCard = () => {
             </Tag>
             <Stack direction={'row'} my={'10px'}>
               <Icon as={BiMapPin} aria-hidden fontSize="1.25rem" mr="0.25rem" />
-              <Text fontSize="sm">
-                115b Alkaff Crescent #01-05 S342115
-              </Text>{' '}
+              <Text fontSize="sm">115b Alkaff Crescent #01-05 S342115</Text>
             </Stack>
           </Box>
         </CardBody>
