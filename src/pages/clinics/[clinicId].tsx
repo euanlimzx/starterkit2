@@ -47,18 +47,19 @@ const IndividualClinicPage = () => {
             </Tag>
 
             <Box>
-              <Button isFullWidth={isMobile} as={NextLink} href={'/clinics'}>
-                Book a women&apos;s health appointment
-              </Button>
-              <Button
-                isFullWidth={isMobile}
-                as={NextLink}
-                href={'/clinics'}
-                variant={'outline'}
-                mt={'1rem'}
-              >
-                Write a review for this clinic
-              </Button>
+              <Stack direction={{ base: 'column', md: 'row' }}>
+                <Button isFullWidth={isMobile}>
+                  Book a women&apos;s health appointment
+                </Button>
+                <Button
+                  isFullWidth={isMobile}
+                  as={NextLink}
+                  href={'/review'}
+                  variant={'outline'}
+                >
+                  Write a review for this clinic
+                </Button>
+              </Stack>
             </Box>
           </Flex>
         </Stack>

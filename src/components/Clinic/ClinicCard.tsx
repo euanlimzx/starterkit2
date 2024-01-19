@@ -9,25 +9,38 @@ import {
   Icon,
 } from '@chakra-ui/react'
 import { BiMapPin } from 'react-icons/bi'
+import { useRouter } from 'next/router'
+//add type definition
+const ClinicCard = (props) => {
+  const router = useRouter()
+  const clinicData = props.clinicData
 
-const ClinicCard = () => {
   return (
-    <Box py={'0.5rem'}>
+    <Box py={'0.5rem'} onClick={() => router.push(`/clinics/${clinicData.id}`)}>
       <Card shadow="md">
         <CardBody>
           <Box>
-            <Text fontSize="sm" color={'green.500'}>
-              98% Positive Reviews
-            </Text>
+            {clinicData.negSentiment ? (
+              <Text fontSize="sm" color={'yellow.500'}>
+                {` ${clinicData.rating}% positive reviews`}
+              </Text>
+            ) : (
+              <Text fontSize="sm" color={'green.500'}>
+                {` ${clinicData.rating}% positive reviews`}
+              </Text>
+            )}
+
             <Heading size="md" my={'5px'}>
-              Lee Medical Clinic
+              {clinicData.name}
             </Heading>
-            <Tag colorScheme="gray" borderRadius={'2rem'}>
-              Female practitioner available
-            </Tag>
+            {clinicData.femalePrac ? (
+              <Tag colorScheme="gray" borderRadius={'2rem'}>
+                Female practitioner available
+              </Tag>
+            ) : null}
             <Stack direction={'row'} my={'10px'}>
               <Icon as={BiMapPin} aria-hidden fontSize="1.25rem" mr="0.25rem" />
-              <Text fontSize="sm">115b Alkaff Crescent #01-05 S342115</Text>
+              <Text fontSize="sm">{clinicData.address}</Text>
             </Stack>
           </Box>
         </CardBody>

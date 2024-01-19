@@ -63,14 +63,13 @@ export const AppPublicHeader = ({
   publicHeaderLinks,
 }: AppPublicHeaderProps): JSX.Element => {
   return (
-    <AppGrid px="1.5rem" bg="base.canvas.brand-subtle">
+    <AppGrid px="1.5rem" bg="#FFFFFF">
       <Flex
         gridColumn={{ base: '1 / -1', md: '2 / 12' }}
         justify="space-between"
         align="center"
         py={{ base: '0.625rem', md: '4.5rem' }}
       >
-        <NextLink href="/">Starter Kit</NextLink>
         <HStack
           textStyle="subhead-1"
           spacing={{ base: '1rem', md: '2rem', xl: '2.5rem' }}
@@ -79,7 +78,7 @@ export const AppPublicHeader = ({
             <PublicHeaderLink key={index} {...link} />
           ))}
           <Button variant="solid" as={NextLink} href={SIGN_IN}>
-            Write a review (Sign in button)
+            Review a Clinic
           </Button>
         </HStack>
       </Flex>

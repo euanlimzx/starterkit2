@@ -96,7 +96,13 @@ const ShowResults = () => {
               <Text fontSize="sm">115b Alkaff Crescent #01-05 S342115</Text>
             </Stack>
             <Box pt={'0.5rem'}>
-              <Button w={'100%'} variant={'outline'} size={'md'}>
+              <Button
+                w={'100%'}
+                variant={'outline'}
+                size={'md'}
+                as={NextLink}
+                href="/review"
+              >
                 Review this clinic
               </Button>
             </Box>

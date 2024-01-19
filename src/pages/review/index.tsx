@@ -36,7 +36,7 @@ const createReview = () => {
           <Box mt="2.5rem">
             <Button
               as={NextLink}
-              href={'/review/findclinic'}
+              href={'/'}
               rightIcon={<BiRightArrowAlt fontSize="1.5rem" />}
             >
               Back to home
