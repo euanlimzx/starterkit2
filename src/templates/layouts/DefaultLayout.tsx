@@ -24,7 +24,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
       <main>
         <RestrictedGovtMasthead />
         <Box display={'flex'} justifyContent={'start'} m={'0.5rem'}>
-          <Button variant="clear" as={NextLink} href={''} color={'black'}>
+          <Button variant="clear" as={NextLink} href={'/'} color={'black'}>
             Femhealth
           </Button>
         </Box>
