@@ -5,13 +5,13 @@ import {
   Toggle,
   useIsMobile,
 } from '@opengovsg/design-system-react'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import ClinicList from '~/components/Clinic/ClinicList'
 import { LandingSection, SectionBodyText } from '~/features/landing/components'
 
 // clinicDataList.js
 
-interface Clinic {
+export type Clinic = {
   id: string
   name: string
   address: string
@@ -22,7 +22,7 @@ interface Clinic {
   specialReview: string
 }
 
-type clinicDataList = Clinic[]
+export type clinicDataList = Clinic[]
 
 const LandingPage = () => {
   const clinicDataList = [
@@ -79,32 +79,46 @@ const LandingPage = () => {
     // Add more variations as needed...
   ]
   const sortByRating = (a: Clinic, b: Clinic) => {
-    return Number(a.rating) - Number(b.rating)
+    return Number(b.rating) - Number(a.rating)
   }
-  const filterAndSort = (clinicDataList: clinicDataList) => {
+  const filterFemalePrac = (clinics: clinicDataList) => {
+    if (female == true) {
+      const femaleFilteredClinics = clinics.filter((clinic) => {
+        return clinic.femalePrac == true
+      })
+
+      return femaleFilteredClinics
+    } else {
+      return clinics
+    }
+  }
+  const filterRegion = (clinicDataList: clinicDataList) => {
     const regionFilteredClinics = clinicDataList.filter((clinic) => {
       return multiselectValues.includes(clinic.region)
     })
-
-    const femaleFilteredClinics = regionFilteredClinics.filter((clinic) => {
-      return clinic.femalePrac == female
-    })
-    return femaleFilteredClinics.sort(sortByRating)
+    return regionFilteredClinics
+  }
+  const handleSearch = () => {
+    let searchedClinics = filterFemalePrac(clinicDataList)
+    setFilteredSearch(false)
+    if (multiselectValues.length != 0) {
+      searchedClinics = filterRegion(searchedClinics)
+      setFilteredSearch(true)
+    }
+    setClinics(searchedClinics.sort(sortByRating))
+    console.log(searchedClinics)
   }
   const isMobile = useIsMobile()
   const [multiselectValues, setMultiSelectValues] = useState([])
   const [female, setFemale] = useState(false)
-  const [clinics, setClinics] = useState(clinicDataList)
+  const [clinics, setClinics] = useState(clinicDataList.sort(sortByRating))
   const [filteredSeach, setFilteredSearch] = useState(false)
+  useEffect(handleSearch, [multiselectValues, female])
+  const ref = useRef(null)
 
-  const handleSearch = () => {
-    if (multiselectValues.length == 0) {
-      setClinics(clinicDataList)
-      console.log('this isnt working, it needs to filter by females too')
-    }
-    setClinics(filterAndSort(clinicDataList))
+  const handleClick = () => {
+    ref.current?.scrollIntoView({ behavior: 'smooth' })
   }
-  console.log(clinics)
 
   return (
     <>
@@ -152,14 +166,13 @@ const LandingPage = () => {
                 name="RegionSelect"
                 onChange={(e) => {
                   setMultiSelectValues(e)
-                  console.log(e)
                 }}
                 values={multiselectValues}
               />
             </Box>
 
             <Box mt="1rem">
-              <Button isFullWidth={isMobile} onClick={handleSearch}>
+              <Button isFullWidth={isMobile} onClick={handleClick}>
                 Find a clinic
               </Button>
             </Box>
@@ -172,9 +185,11 @@ const LandingPage = () => {
           align="center"
           spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
         >
-          <Flex flexDir="column" flex={1}>
+          <Flex flexDir="column" flex={1} ref={ref}>
             <Text as="h1" textStyle={'h4'} color="base.content.strong">
-              Find a clinic that meets your needs based on 200+ reviews
+              {filteredSeach
+                ? `Here are the clinics that match your search criteria`
+                : ' Find a clinic that meets your needs based on our verified reviews'}
             </Text>
             <SectionBodyText mt="0.5rem">
               Select a clinic to read their reviews
@@ -184,13 +199,11 @@ const LandingPage = () => {
                 description=""
                 label="View clinics with female practitioners"
                 onChange={() => {
-                  setFemale((female) => {
-                    return !female
-                  })
-                  handleSearch()
+                  setFemale((female) => !female)
                 }}
               />
             </Box>
+            <ClinicList clinics={clinics} />
             {filteredSeach ? null : <NonfilteredSearch />}
           </Flex>
         </Stack>
@@ -207,7 +220,6 @@ const NonfilteredSearch = () => {
   const isMobile = useIsMobile()
   return (
     <>
-      <ClinicList />
       <Box mt="2.5rem">
         <Button isFullWidth={isMobile} variant="outline">
           Show me more clinics
