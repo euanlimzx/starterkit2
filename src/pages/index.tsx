@@ -42,7 +42,7 @@ const LandingPage = () => {
       address: '789 Pine Street #02-15 Maple Grove XY 98765',
       femalePrac: true,
       rating: '56',
-      negSentiment: false,
+      negSentiment: true,
       region: 'East',
       specialReview: 'Great service and friendly staff!',
     },
@@ -204,7 +204,7 @@ const LandingPage = () => {
               />
             </Box>
             <ClinicList clinics={clinics} />
-            {filteredSeach ? null : <NonfilteredSearch />}
+            {filteredSeach ? <FilteredSearch /> : <NonfilteredSearch />}
           </Flex>
         </Stack>
       </LandingSection>
@@ -214,7 +214,14 @@ const LandingPage = () => {
 
 export default LandingPage
 
-const FilteredSearch = () => {}
+const FilteredSearch = () => {
+  const isMobile = useIsMobile()
+  return (
+    <>
+      <Box mt="2.5rem"></Box>
+    </>
+  )
+}
 
 const NonfilteredSearch = () => {
   const isMobile = useIsMobile()
