@@ -1,46 +1,79 @@
-import { Flex, Stack, Text, Box, Button } from '@chakra-ui/react'
-import { BiRightArrowAlt } from 'react-icons/bi'
-import { LandingSection, SectionBodyText } from '~/features/landing/components'
+import { Box, Flex, Stack, Text, Icon } from '@chakra-ui/react'
+import { Button, Searchbar } from '@opengovsg/design-system-react'
 import NextLink from 'next/link'
+import { SectionBodyText } from '~/features/landing/components'
+import { LandingSection } from '~/features/landing/components/LandingSection'
+import { FiThumbsUp } from 'react-icons/fi'
+import { BiMapPin } from 'react-icons/bi'
+import { useState } from 'react'
 
-const createReview = () => {
+const Page = () => {
+  const [toggle, setToggle] = useState(true)
   return (
-    <LandingSection
-      bg="base.canvas.brand-subtle"
-      pt={{ base: '2rem', md: 0 }}
-      px={0}
-    >
-      <Stack
-        direction={{ base: 'column', lg: 'row' }}
-        align="center"
-        spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
-      >
+    <>
+      <LandingSection bg="#FFFFFF" pt={{ base: '5rem', md: '6rem' }} px={0}>
+        <Stack
+          direction={{ base: 'column', lg: 'row' }}
+          align="left"
+          spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
+        >
+          <Flex flexDir="column" flex={1}>
+            <Box alignItems={'start'}></Box>
+
+            <Text as="h1" textStyle={'h3-semibold'} pt="1rem">
+              Find a clinic to review
+            </Text>
+            <Box my={'1rem'}>
+              <Searchbar
+                defaultIsExpanded
+                onExpansion={function Ha() {}}
+                onSearch={function Ha() {}}
+                showClearButton={false}
+                placeholder="Enter clinic name"
+              />
+            </Box>
+
+            <Box>
+              <Button w={'100%'} onClick={() => setToggle(!toggle)}>
+                Search clinics
+              </Button>
+            </Box>
+          </Flex>
+        </Stack>
+      </LandingSection>
+      {toggle ? <ReviewInstructions /> : <ShowResults />}
+    </>
+  )
+}
+
+const ReviewInstructions = () => {
+  return (
+    <LandingSection bg="#FFFFFF" px={0} py={0}>
+      <Stack direction={{ base: 'column', lg: 'row' }} align="left">
         <Flex flexDir="column" flex={1}>
-          <Text
-            as="h1"
-            textStyle={{
-              base: 'responsive-display.heavy',
-              md: 'responsive-display.heavy-480',
-            }}
-            color="base.content.strong"
-          >
-            This page will be for you to create a review
+          <Text as="h4" textStyle={'h5'}>
+            How do I review a clinic?
           </Text>
-          <SectionBodyText mt="1rem">
-            [TODO] API Fetch route to list all clinics <br /> [TODO] Some sort
-            of search / filter function to sort out clinics
-            <br />
-            Users will be able to select a particular clinic to view more in
-            depth, this is the route they will take (button below)
-          </SectionBodyText>
-          <Box mt="2.5rem">
-            <Button
-              as={NextLink}
-              href={'/'}
-              rightIcon={<BiRightArrowAlt fontSize="1.5rem" />}
-            >
-              Back to home
-            </Button>
+          <Box my={'1rem'}>
+            <Icon as={FiThumbsUp} aria-hidden fontSize="1.25rem" mr="0.25rem" />
+            <Text fontSize="sm">
+              Let others know what you liked about the clinic and your
+              interaction with the doctor
+            </Text>
+          </Box>
+          <Box my={'1rem'}>
+            <Icon as={FiThumbsUp} aria-hidden fontSize="1.25rem" mr="0.25rem" />
+            <Text fontSize="sm">
+              Let others know what you liked about the clinic and your
+              interaction with the doctor
+            </Text>
+          </Box>
+          <Box my={'1rem'}>
+            <Icon as={FiThumbsUp} aria-hidden fontSize="1.25rem" mr="0.25rem" />
+            <Text fontSize="sm">
+              Let others know what you liked about the clinic and your
+              interaction with the doctor
+            </Text>
           </Box>
         </Flex>
       </Stack>
@@ -48,4 +81,36 @@ const createReview = () => {
   )
 }
 
-export default createReview
+const ShowResults = () => {
+  return (
+    <LandingSection bg="#FFFFFF" px={0} py={0}>
+      <Stack direction={{ base: 'column', lg: 'row' }} align="left">
+        <Flex flexDir="column" flex={1}>
+          <Text as="h4" textStyle={'h5'}>
+            Search results for &quot;Lee Medical Clinic&quot;
+          </Text>
+          <Box mt={'1.25rem'}>
+            <Text fontWeight={'semibold'}>Lee Medical Clinic</Text>
+            <Stack direction={'row'} my={'5px'} color={'brand.secondary.400'}>
+              <Icon as={BiMapPin} aria-hidden fontSize="1.25rem" mr="0.25rem" />
+              <Text fontSize="sm">115b Alkaff Crescent #01-05 S342115</Text>
+            </Stack>
+            <Box pt={'0.5rem'}>
+              <Button
+                w={'100%'}
+                variant={'outline'}
+                size={'md'}
+                as={NextLink}
+                href="/review"
+              >
+                Review this clinic
+              </Button>
+            </Box>
+          </Box>
+        </Flex>
+      </Stack>
+    </LandingSection>
+  )
+}
+
+export default Page
