@@ -66,20 +66,29 @@ model VerificationToken {
 // }
 
 model Clinic {
-  id      String   @id @default(cuid())
-  name    String   @unique
-  reviews Review[]
+  id            String   @id @default(cuid())
+  name          String   @unique
+  address       String
+  femalePrac    Boolean
+  rating        String
+  negSentiment  Boolean
+  region        String
+  specialReview String
+  reviews       Review[]
 }
 
 model Review {
-  id       String  @id @default(cuid())
-  verified Boolean //whether or not its an anonymous review
-  content  String
-  clinic   Clinic  @relation(fields: [clinicId], references: [id])
-  clinicId String
-  user     User    @relation(fields: [userId], references: [id])
-  userId   String
+  id           String   @id @default(cuid())
+  verified     Boolean //whether or not its an anonymous review
+  negSentiment Boolean
+  review       String
+  tags         String[]
+  date         DateTime @default(now())
+  clinic       Clinic   @relation(fields: [clinicId], references: [id])
+  clinicId     String
 }
+
+//we have to properly decide on the fields of the forms
 
 model User {
   id            String     @id @default(cuid())
@@ -93,7 +102,6 @@ model User {
   // likedPosts    LikedPosts[]
   // have to clean up the other fields another time, now its okay since they are all optional fields
   accounts      Accounts[]
-  reviews       Review[]
 }
 
 model Accounts {

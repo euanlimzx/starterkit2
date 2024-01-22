@@ -34,7 +34,8 @@ const LandingPage = () => {
       rating: '48',
       negSentiment: true,
       region: 'West',
-      specialReview: 'i fill up later',
+      specialReview:
+        'Not the best, doctor was a tad bit insensitive and stubborn',
     },
     {
       id: '72c3eaa0-8f57-4a8f-b4a2-9f830cc6b381',
@@ -76,7 +77,6 @@ const LandingPage = () => {
       region: 'Northeast',
       specialReview: 'Needs improvement in customer service.',
     },
-    // Add more variations as needed...
   ]
   const sortByRating = (a: Clinic, b: Clinic) => {
     return Number(b.rating) - Number(a.rating)
@@ -108,7 +108,6 @@ const LandingPage = () => {
     setClinics(searchedClinics.sort(sortByRating))
     console.log(searchedClinics)
   }
-  const isMobile = useIsMobile()
   const [multiselectValues, setMultiSelectValues] = useState([])
   const [female, setFemale] = useState(false)
   const [clinics, setClinics] = useState(clinicDataList.sort(sortByRating))
