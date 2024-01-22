@@ -113,7 +113,7 @@ const LandingPage = () => {
   const [female, setFemale] = useState(false)
   const [clinics, setClinics] = useState(clinicDataList.sort(sortByRating))
   const [filteredSeach, setFilteredSearch] = useState(false)
-  // useEffect(handleSearch, [multiselectValues, female])
+  useEffect(handleSearch, [multiselectValues, female])
   const ref = useRef(null)
 
   const handleClick = () => {
@@ -224,7 +224,6 @@ const LandingPage = () => {
               />
             </Box>
             <ClinicList clinics={clinics} />
-            {filteredSeach ? <FilteredSearch /> : <NonfilteredSearch />}
           </Flex>
         </Stack>
       </LandingSection>
@@ -233,25 +232,3 @@ const LandingPage = () => {
 }
 
 export default LandingPage
-
-const FilteredSearch = () => {
-  const isMobile = useIsMobile()
-  return (
-    <>
-      <Box mt="2.5rem"></Box>
-    </>
-  )
-}
-
-const NonfilteredSearch = () => {
-  const isMobile = useIsMobile()
-  return (
-    <>
-      <Box mt="2.5rem">
-        <Button width="100%" variant="outline">
-          Show me more clinics
-        </Button>
-      </Box>
-    </>
-  )
-}
