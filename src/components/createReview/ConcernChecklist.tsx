@@ -104,6 +104,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
           coming here?
         </Text>
         <Textarea
+          focusBorderColor="brand.primary.500"
           onChange={(e) => {
             setReviewContent(e.target.value)
           }}
