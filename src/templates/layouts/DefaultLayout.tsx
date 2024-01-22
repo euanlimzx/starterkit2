@@ -1,6 +1,7 @@
 import {
   RestrictedFooter,
   RestrictedGovtMasthead,
+  Banner,
 } from '@opengovsg/design-system-react'
 import Head from 'next/head'
 import { type ReactNode } from 'react'
@@ -22,7 +23,11 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
       </Head>
 
       <main>
+        <Banner variant="error">
+          this is a prototype, not a real product!
+        </Banner>
         <RestrictedGovtMasthead />
+
         <Box display={'flex'} justifyContent={'start'} m={'0.5rem'}>
           <Button variant="clear" as={NextLink} href={'/'} color={'black'}>
             Femhealth

@@ -263,7 +263,7 @@ const IndividualClinicPage = () => {
         >
           {`All reviews for ${clinic?.name} `}
         </Text>
-        <Box pt={'2rem'}>
+        <Box pt={'2rem'} pb={'0.45rem'}>
           <Toggle
             description=""
             label="Verified reviews only"

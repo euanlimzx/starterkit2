@@ -1,5 +1,9 @@
 import { Box, Stack, Text, Icon, Alert, AlertIcon, Tag } from '@chakra-ui/react'
 import { BsFillQuestionCircleFill } from 'react-icons/bs'
+import {
+  TouchableTooltip,
+  TouchableTooltipProps,
+} from '@opengovsg/design-system-react'
 import type { review } from '~/pages/clinics/[clinicId]'
 const ReviewCard = ({ review }: { review: review }) => {
   function timeAgo(date: Date) {
@@ -22,7 +26,7 @@ const ReviewCard = ({ review }: { review: review }) => {
   }
 
   return (
-    <Box py={'1.5rem'}>
+    <Box pb={'1.5rem'}>
       <Stack>
         {review.negSentiment ? (
           <Text fontSize="sm" color={'orange.300'} fontWeight={'bold'}>
@@ -37,7 +41,6 @@ const ReviewCard = ({ review }: { review: review }) => {
           <>
             <Stack direction={'row'} align={'center'} fontSize="md">
               <Text fontWeight={'bold'}>Verified Reviewer</Text>
-              <Icon as={BsFillQuestionCircleFill} aria-hidden fontSize="1rem" />
             </Stack>
             <Text fontSize="xs" color="brand.secondary.500">
               {timeAgo(review.date)}
@@ -47,17 +50,20 @@ const ReviewCard = ({ review }: { review: review }) => {
           <>
             <Stack direction={'row'} align={'center'} fontSize="md">
               <Text fontWeight={'bold'}>Non-verified Reviewer</Text>
-              <Icon as={BsFillQuestionCircleFill} aria-hidden fontSize="1rem" />
+              <TouchableTooltip
+                label="We couldn't verify if this reviewer visited the clinic"
+                placement={'top'}
+              >
+                <Icon
+                  as={BsFillQuestionCircleFill}
+                  aria-hidden
+                  fontSize="1rem"
+                />
+              </TouchableTooltip>
             </Stack>
             <Text fontSize="xs" color="brand.secondary.500">
               {timeAgo(review.date)}
             </Text>
-            <Box p={'0.5rem'}>
-              <Alert status="warning">
-                <AlertIcon />
-                This reviewer hasn&apos;t been verified as a visitor
-              </Alert>
-            </Box>
           </>
         )}
 

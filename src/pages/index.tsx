@@ -120,6 +120,23 @@ const LandingPage = () => {
     ref.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const showClinicCopy = () => {
+    if (multiselectValues.length == 1) {
+      return `Clinics providing women's health services in ${multiselectValues[0]} Singapore`
+    } else {
+      const shortArr = multiselectValues.slice(0, -1)
+      const regions = shortArr
+        .map((region) => {
+          return `${region}`
+        })
+        .join(', ')
+      console.log(regions)
+      return `Clinics providing women's health services in ${regions} and ${
+        multiselectValues.slice(-1)[0]
+      } Singapore`
+    }
+  }
+
   return (
     <>
       <LandingSection bg="#FFFFFF" pt={{ base: '3rem', md: '10rem' }} px={0}>
@@ -188,8 +205,8 @@ const LandingPage = () => {
           <Flex flexDir="column" flex={1} ref={ref}>
             <Text as="h1" textStyle={'h4'} color="base.content.strong">
               {filteredSeach
-                ? `Here are the clinics that match your search criteria`
-                : ' Find a clinic that meets your needs based on our verified reviews'}
+                ? showClinicCopy()
+                : 'Find a clinic that meets your needs based on our verified reviews'}
             </Text>
             <SectionBodyText mt="0.5rem">
               Select a clinic to read their reviews
