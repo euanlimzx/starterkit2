@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import ConcernChecklist from '~/components/createReview/concernChecklist'
+import ConcernChecklist from '~/components/createReview/ConcernChecklist'
 import { LandingSection, SectionBodyText } from '~/features/landing/components'
 const CreateReview = () => {
   const clinicDataList = [
