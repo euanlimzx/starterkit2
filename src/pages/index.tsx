@@ -163,6 +163,7 @@ const LandingPage = () => {
             </SectionBodyText>
             <Box mt="2.5rem">
               <MultiSelect
+                colorScheme="pink"
                 placeholder={'Select a region'}
                 items={[
                   {
