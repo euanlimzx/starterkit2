@@ -85,6 +85,15 @@ const createReview = () => {
             <Button as={NextLink} href={'/'} width={'100%'}>
               Back to Home
             </Button>
+            <Button
+              as={NextLink}
+              href={'/HAS'}
+              width={'100%'}
+              variant={'clear'}
+              mt={'1rem'}
+            >
+              Or, book another visit at this clinic
+            </Button>
           </Box>
         </Flex>
       </Stack>

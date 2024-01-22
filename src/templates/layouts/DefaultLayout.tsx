@@ -23,8 +23,8 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
       </Head>
 
       <main>
-        <Banner variant="error">
-          this is a prototype, not a real product!
+        <Banner variant="error" size={'sm'}>
+          Hackathon prototype, not a real product!
         </Banner>
         <RestrictedGovtMasthead />
 

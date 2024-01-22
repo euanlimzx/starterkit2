@@ -1,9 +1,17 @@
-import { Box, Button, Flex, Stack, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  Stack,
+  Text,
+  Alert,
+  AlertIcon,
+} from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
+import ConcernChecklist from '~/components/createReview/concernChecklist'
 import { LandingSection, SectionBodyText } from '~/features/landing/components'
-
-const createReview = () => {
+const CreateReview = () => {
   const clinicDataList = [
     {
       id: '61f4d8d9-4acc-47db-b874-2f4460717792',
@@ -62,6 +70,7 @@ const createReview = () => {
   const clinic = clinicDataList.filter((clinic) => {
     return clinic.id == clinicId
   })[0]
+
   return (
     <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: 0 }} px={0}>
       <Stack
@@ -73,22 +82,19 @@ const createReview = () => {
           <Text as="h1" textStyle={'h4'} color="base.content.strong">
             {`You're reviewing ${clinic?.name}`}
           </Text>
-          <SectionBodyText mt="1rem">
-            [TODO] Once format of the review form is completed
+          <SectionBodyText my="1.5rem">
+            Let us know how your consultation went.
           </SectionBodyText>
-          <Box mt="2.5rem">
-            <Button
-              as={NextLink}
-              href={`/review/thankyou/${clinicId}`}
-              width={'100%'}
-            >
-              Submit Review
-            </Button>
-          </Box>
+          <Alert status="warning" mb="1.5rem">
+            <AlertIcon />
+            You are leaving a review as an unverified visitor.
+          </Alert>
+
+          <ConcernChecklist clinicId={clinicId} />
         </Flex>
       </Stack>
     </LandingSection>
   )
 }
 
-export default createReview
+export default CreateReview

@@ -113,7 +113,7 @@ const LandingPage = () => {
   const [female, setFemale] = useState(false)
   const [clinics, setClinics] = useState(clinicDataList.sort(sortByRating))
   const [filteredSeach, setFilteredSearch] = useState(false)
-  useEffect(handleSearch, [multiselectValues, female])
+  // useEffect(handleSearch, [multiselectValues, female])
   const ref = useRef(null)
 
   const handleClick = () => {
@@ -182,7 +182,8 @@ const LandingPage = () => {
                 ]}
                 name="RegionSelect"
                 onChange={(e) => {
-                  setMultiSelectValues(e)
+                  console.log(e)
+                  // setMultiSelectValues([...e])
                 }}
                 values={multiselectValues}
               />
