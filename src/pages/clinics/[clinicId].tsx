@@ -273,9 +273,6 @@ const IndividualClinicPage = () => {
           />
         </Box>
         <ReviewList reviewList={reviews} />
-        <Button isFullWidth={isMobile} variant={'outline'} mt={'1rem'}>
-          Load more reviews
-        </Button>
       </LandingSection>
     </>
   )
