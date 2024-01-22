@@ -248,7 +248,7 @@ const NonfilteredSearch = () => {
   return (
     <>
       <Box mt="2.5rem">
-        <Button isFullWidth={isMobile} variant="outline">
+        <Button width="100%" variant="outline">
           Show me more clinics
         </Button>
       </Box>
