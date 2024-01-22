@@ -16,7 +16,11 @@ const ClinicCard = (props) => {
   const clinicData = props.clinicData
 
   return (
-    <Box py={'0.5rem'} onClick={() => router.push(`/clinics/${clinicData.id}`)}>
+    <Box
+      py={'0.5rem'}
+      onClick={() => router.push(`/clinics/${clinicData.id}`)}
+      cursor={'pointer'}
+    >
       <Card shadow="md">
         <CardBody>
           <Box>

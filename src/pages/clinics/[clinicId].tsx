@@ -243,7 +243,7 @@ const IndividualClinicPage = () => {
           )}
         </Box>
         <Box
-          bg="brand.secondary.50"
+          bg="brand.primary.50"
           my={'2rem'}
           p={'1.25rem'}
           borderRadius={'0.5rem'}
