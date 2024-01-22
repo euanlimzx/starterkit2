@@ -150,8 +150,9 @@ const LandingPage = () => {
               as="h1"
               textStyle={{
                 base: 'responsive-display.heavy',
-                md: 'responsive-display.heavy-480',
+                md: 'responsive-heading.light-480',
               }}
+              textAlign={{ base: 'left', md: 'center' }}
               color="base.content.strong"
             >
               Find a doctor for your women&apos;s health concerns.
@@ -183,14 +184,14 @@ const LandingPage = () => {
                 name="RegionSelect"
                 onChange={(e) => {
                   console.log(e)
-                  // setMultiSelectValues([...e])
+                  setMultiSelectValues([...e])
                 }}
                 values={multiselectValues}
               />
             </Box>
 
             <Box mt="1rem">
-              <Button isFullWidth={isMobile} onClick={handleClick}>
+              <Button w="100%" onClick={handleClick}>
                 Find a clinic
               </Button>
             </Box>
