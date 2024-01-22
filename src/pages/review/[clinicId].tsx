@@ -72,7 +72,7 @@ const CreateReview = () => {
   })[0]
 
   return (
-    <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: 0 }} px={0}>
+    <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: '5rem' }} px={0}>
       <Stack
         direction={{ base: 'column', lg: 'row' }}
         align="center"
@@ -89,7 +89,6 @@ const CreateReview = () => {
             <AlertIcon />
             You are leaving a review as an unverified visitor.
           </Alert>
-
           <ConcernChecklist clinicId={clinicId} />
         </Flex>
       </Stack>

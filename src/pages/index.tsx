@@ -145,7 +145,7 @@ const LandingPage = () => {
           align="left"
           spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
         >
-          <Flex flexDir="column" flex={1}>
+          <Flex flexDir="column" flex={1} px={{ base: '0rem', md: '4rem' }}>
             <Text
               as="h1"
               textStyle={{

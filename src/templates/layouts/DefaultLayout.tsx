@@ -34,7 +34,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           </Button>
         </Box>
         <Divider />
-        <Box mx={{ base: '0rem', md: '9rem' }}> {children}</Box>
+        <Box mx={{ base: '0rem', md: '16rem' }}> {children}</Box>
 
         <AppGrid bg="#FFFFFFF" px="1.5rem">
           <Box gridColumn={{ base: '1 / -1', md: '2 / 12' }}>

@@ -1,16 +1,14 @@
 import {
-  Stack,
-  CheckboxGroup,
-  Checkbox,
   Box,
+  Button,
+  Checkbox,
+  CheckboxGroup,
+  Stack,
   Text,
   Textarea,
-  Button,
 } from '@chakra-ui/react'
-import { useState, useEffect } from 'react'
-import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import ClinicCard from '../Clinic/ClinicCard'
+import { useState } from 'react'
 
 function ConcernChecklist({ clinicId }: { clinicId: string }) {
   const router = useRouter(0)
@@ -41,6 +39,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
       }
     }
   }
+
   return (
     <>
       <Box shadow={'sm'} p={'1.5rem'} mb={'1rem'} borderRadius={'0.5rem'}>
@@ -110,7 +109,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
           }}
           placeholder="Do not disclose any personal information as this review will be made public"
           mt="0.5rem"
-          size={'xs'}
+          size="xs"
         />
       </Box>
       <Box>
@@ -123,7 +122,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
             router.push(`/review/thankyou/${clinicId}`)
           }}
           width={'100%'}
-          size={'lg'}
+          size="lg"
         >
           Submit Review
         </Button>
