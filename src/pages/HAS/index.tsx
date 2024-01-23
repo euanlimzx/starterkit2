@@ -5,7 +5,7 @@ import NextLink from 'next/link'
 
 const createReview = () => {
   return (
-    <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: 0 }} px={0}>
+    <LandingSection bg="#FFFFFF" pt={{ base: '2rem' }} px={0}>
       <Stack
         direction={{ base: 'column', lg: 'row' }}
         align="center"
@@ -20,10 +20,11 @@ const createReview = () => {
             }}
             color="base.content.strong"
           >
-            Ideally, this will bring you to HAS
+            In an ideal world, this button would bring you to HAS
           </Text>
           <SectionBodyText mt="1rem">
-            lets link this to a Figma preview if possible
+            and then you can book an appointment directly with a clinic from
+            there!
           </SectionBodyText>
           <Box mt="2.5rem">
             <Button
