@@ -15,7 +15,7 @@ const Test = () => {
       userId: 'clrgot2io0000m9mm1cm0si3w',
     })
   }
-  //fetch Users
+  //fetch Users THIS CURLY BRACE IS WRONG USE SQUARE BRACKETS INSTEAD
   const { data: userData, refetch: refetchUsers } =
     trpc.review.fetchUsers.useQuery()
   const fetchUsers = async () => {
