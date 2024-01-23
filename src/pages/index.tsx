@@ -78,9 +78,8 @@ const LandingPage = () => {
     },
   ]
 
-  const { data: clinicsFromDb, refetch: refetchClinics } =
-    trpc.clinic.fetchClinics.useQuery()
-  console.log(clinicsFromDb)
+  // let { data: clinicDataList, refetch: refetchClinics } =
+  //   trpc.clinic.fetchClinics.useQuery()
 
   const sortByRating = (a: Clinic, b: Clinic) => {
     return Number(b.rating) - Number(a.rating)
@@ -113,7 +112,7 @@ const LandingPage = () => {
   }
   const [multiselectValues, setMultiSelectValues] = useState([])
   const [female, setFemale] = useState(false)
-  const [clinics, setClinics] = useState(clinicDataList.sort(sortByRating))
+  const [clinics, setClinics] = useState([])
   const [filteredSeach, setFilteredSearch] = useState(false)
   useEffect(handleSearch, [multiselectValues, female])
   const ref = useRef(null)

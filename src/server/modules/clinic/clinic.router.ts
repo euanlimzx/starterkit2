@@ -8,7 +8,7 @@ import { publicProcedure, router } from '~/server/trpc'
 import { z } from 'zod'
 
 export const clinicRouter = router({
-  createManyClinics: publicProcedure.mutation(async ({ input, ctx }) => {
+  createManyClinics: publicProcedure.mutation(async ({ ctx }) => {
     await ctx.prisma.clinic.createMany({
       data: [
         {
@@ -82,6 +82,7 @@ export const clinicRouter = router({
       })
     }),
   fetchClinics: publicProcedure.query(async ({ ctx }) => {
+    console.log(await ctx.prisma.clinic.findMany())
     return await ctx.prisma.clinic.findMany()
   }),
   fetchClinicById: publicProcedure
