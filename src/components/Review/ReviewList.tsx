@@ -19,7 +19,7 @@ const ReviewList = ({ reviewList }: { reviewList: reviewList }) => {
           return <ReviewCard review={review} key={review.id} />
         })}
         {showMore ? (
-          reviewList.slice(4, reviewList.length).map((review) => {
+          reviewList.slice(4, reviewList.length + 1).map((review) => {
             return <ReviewCard review={review} key={review.id} />
           })
         ) : (

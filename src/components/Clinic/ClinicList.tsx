@@ -25,7 +25,7 @@ const ClinicList = ({ clinics }: { clinics: clinicDataList }) => {
           })}
         </Box>
         {showMore ? (
-          clinics.slice(4, clinics.length).map((clinic) => {
+          clinics.slice(3, clinics.length + 1).map((clinic) => {
             return <ClinicCard key={clinic.id} clinicData={clinic} />
           })
         ) : (

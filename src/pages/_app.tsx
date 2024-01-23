@@ -15,7 +15,6 @@ import { LoginStateProvider } from '~/features/auth'
 import { env } from '~/env.mjs'
 import { ErrorBoundary } from 'react-error-boundary'
 import { DefaultFallback } from '~/components/ErrorBoundary/DefaultFallback'
-import '@fontsource-variable/dm-sans'
 
 type AppPropsWithAuthAndLayout = AppProps & {
   Component: NextPageWithLayout
