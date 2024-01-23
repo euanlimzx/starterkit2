@@ -156,7 +156,10 @@ const LandingPage = () => {
             >
               Find a doctor for your women&apos;s health concerns.
             </Text>
-            <SectionBodyText mt="1rem">
+            <SectionBodyText
+              mt="1rem"
+              textAlign={{ base: 'left', md: 'center' }}
+            >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
               quam mollitia, nemo quibusdam dolorem autem!
             </SectionBodyText>
