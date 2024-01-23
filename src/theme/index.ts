@@ -5,7 +5,7 @@ import { layerStyles } from './layerStyles'
 import { components } from './components'
 import { textStyles } from './foundations/textStyles'
 import { colors } from './foundations/colors'
-
+import '@fontsource-variable/dm-sans'
 export const theme = extendTheme(ogpDsTheme, {
   colors: colors,
   shadows,
@@ -15,4 +15,7 @@ export const theme = extendTheme(ogpDsTheme, {
   },
   textStyles,
   layerStyles,
+  fonts: {
+    dmsans: `'DM Sans', sans-serif`,
+  },
 })
