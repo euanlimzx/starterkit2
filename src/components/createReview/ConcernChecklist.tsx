@@ -22,7 +22,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
   const [descriptionValues, setDescriptionValues] = useState([])
   const submitReview = trpc.review.createReview.useMutation()
   const handleSubmit = () => {
-    if (other) {
+    if (other && otherContent.length != 0) {
       const newConcernValues = [...concernValues, otherContent]
       return submitReview.mutateAsync({
         clinicId: clinicId,
