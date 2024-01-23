@@ -63,7 +63,7 @@ const createReview = () => {
     return clinic.id == clinicId
   })[0]
   return (
-    <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: 0 }} px={0}>
+    <LandingSection bg="#FFFFFF" pt={{ base: '2rem' }} px={0}>
       <Stack
         direction={{ base: 'column', lg: 'row' }}
         align="center"
