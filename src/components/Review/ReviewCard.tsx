@@ -17,14 +17,14 @@ const ReviewCard = ({ review }: { review: review }) => {
     const years = Math.floor(days / 365)
 
     if (years > 0) {
-      return years === 1 ? 'a year ago' : `${years} years ago`
+      return years === 1 ? '1 year ago' : `${years} years ago`
     } else if (months > 0) {
-      return months === 1 ? 'a month ago' : `${months} months ago`
+      return months === 1 ? '1 month ago' : `${months} months ago`
     } else {
-      return days === 1 ? 'a day ago' : `${days} days ago`
+      return days <= 1 ? '1 day ago' : `${days} days ago`
     }
   }
-
+  console.log(review.date)
   return (
     <Box pb={'1.5rem'}>
       <Stack>
@@ -67,9 +67,24 @@ const ReviewCard = ({ review }: { review: review }) => {
           </>
         )}
 
-        <Text>{review.review}</Text>
+        <Text>{review.reviewContent}</Text>
         <Box>
-          {review.tags.map((tag, index) => {
+          {review.concernValues.map((tag, index) => {
+            return (
+              <Tag
+                colorScheme="gray"
+                borderRadius={'2rem'}
+                mx="2px"
+                my="4px"
+                key={index}
+              >
+                {tag}
+              </Tag>
+            )
+          })}
+        </Box>
+        <Box>
+          {review.descriptionValues.map((tag, index) => {
             return (
               <Tag
                 colorScheme="gray"

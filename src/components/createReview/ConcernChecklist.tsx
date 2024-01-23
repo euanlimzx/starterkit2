@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { trpc } from '~/utils/trpc'
 
 function ConcernChecklist({ clinicId }: { clinicId: string }) {
   const router = useRouter(0)
@@ -19,24 +20,27 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
   const [reviewContent, setReviewContent] = useState('')
   //second section
   const [descriptionValues, setDescriptionValues] = useState([])
+  const submitReview = trpc.review.createReview.useMutation()
   const handleSubmit = () => {
     if (other) {
       const newConcernValues = [...concernValues, otherContent]
-      return {
+      return submitReview.mutateAsync({
         clinicId: clinicId,
+        negSentiment: false,
         verified: false,
         concernValues: newConcernValues,
         descriptionValues: descriptionValues,
         reviewContent: reviewContent,
-      }
+      })
     } else {
-      return {
+      return submitReview.mutateAsync({
         clinicId: clinicId,
+        negSentiment: true,
         verified: false,
         concernValues: concernValues,
         descriptionValues: descriptionValues,
         reviewContent: reviewContent,
-      }
+      })
     }
   }
 

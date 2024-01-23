@@ -1,9 +1,16 @@
 import ReviewCard from './ReviewCard'
 import type { reviewList } from '~/pages/clinics/[clinicId]'
-import { Button } from '@chakra-ui/react'
+import { Box, Button } from '@chakra-ui/react'
 import { useState } from 'react'
 const ReviewList = ({ reviewList }: { reviewList: reviewList }) => {
   const [showMore, setShowMore] = useState(false)
+  if (reviewList.length == 0) {
+    return (
+      <Box py={'3rem'} px={'5rem'} textAlign={'center'}>
+        There are no reviews for this clinic yet!
+      </Box>
+    )
+  }
   if (reviewList.length <= 3) {
     return (
       <>

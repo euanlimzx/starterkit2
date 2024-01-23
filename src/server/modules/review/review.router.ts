@@ -9,14 +9,25 @@ export const reviewRouter = router({
     .mutation(async ({ input, ctx }) => {
       await ctx.prisma.review.create({
         data: {
-          content: input.content,
           verified: input.verified,
           clinicId: input.clinicId,
-          userId: input.userId,
+          concernValues: input.concernValues,
+          descriptionValues: input.descriptionValues,
+          negSentiment: false,
+          reviewContent: input.reviewContent,
         },
       })
     }),
-  fetchUsers: publicProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.user.findMany()
-  }),
 })
+
+// model Review {
+//   id                String   @id @default(cuid())
+//   verified          Boolean
+//   clinicId          String
+//   concernValues     String[]
+//   descriptionValues String[]
+//   date              DateTime @default(now())
+//   negSentiment      Boolean
+//   reviewContent     String
+//   clinic            Clinic   @relation(fields: [clinicId], references: [id])
+// }

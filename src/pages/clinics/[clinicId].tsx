@@ -12,55 +12,56 @@ export type review = {
   id: string
   verified: boolean
   negSentiment: boolean
-  review: string
-  tags: string[]
+  reviewContent: string
+  concernValues: string[]
+  descriptionValues: string[]
   date: Date
 }
 export type reviewList = review[]
 const IndividualClinicPage = () => {
-  const reviewList = [
-    {
-      id: '282170b8-005f-49c6-8c0a-8f32297d9bb4',
-      verified: true,
-      negSentiment: false,
-      review: 'Very pleasant experience, would recommend to other females!',
-      tags: ['Empathetic', 'Caring', 'Attentive Listener'],
-      date: new Date(2023, 11, 15),
-    },
-    {
-      id: '372890a2-4f2c-4b65-9d2b-6fd0d0c20e51',
-      verified: true,
-      negSentiment: true,
-      review: 'Not satisfied with the service. Staff seemed disorganized.',
-      tags: ['Disorganized', 'Unsatisfactory'],
-      date: new Date(2023, 11, 10),
-    },
-    {
-      id: 'b6b6e5e5-8bb8-492d-b1c1-5d85d0cfdcc1',
-      verified: false,
-      negSentiment: false,
-      review: 'Excellent clinic! The doctors are knowledgeable and caring.',
-      tags: ['Excellent', 'Knowledgeable', 'Caring'],
-      date: new Date(2023, 10, 28),
-    },
-    {
-      id: '5be6ca22-5e91-4a65-b6c8-1ae44a48bf84',
-      verified: true,
-      negSentiment: false,
-      review:
-        'Friendly staff and clean environment. Had a positive experience.',
-      tags: ['Friendly', 'Clean', 'Positive Experience'],
-      date: new Date(2023, 9, 5),
-    },
-    {
-      id: 'c0a9c360-83f8-4a25-9cb1-001cb8c8ad9e',
-      verified: true,
-      negSentiment: false,
-      review: 'Efficient service and short waiting times. Would visit again.',
-      tags: ['Efficient', 'Short Waiting Times', 'Recommended'],
-      date: new Date(2023, 8, 20),
-    },
-  ]
+  // const reviewList = [
+  //   {
+  //     id: '282170b8-005f-49c6-8c0a-8f32297d9bb4',
+  //     verified: true,
+  //     negSentiment: false,
+  //     review: 'Very pleasant experience, would recommend to other females!',
+  //     tags: ['Empathetic', 'Caring', 'Attentive Listener'],
+  //     date: new Date(2023, 11, 15),
+  //   },
+  //   {
+  //     id: '372890a2-4f2c-4b65-9d2b-6fd0d0c20e51',
+  //     verified: true,
+  //     negSentiment: true,
+  //     review: 'Not satisfied with the service. Staff seemed disorganized.',
+  //     tags: ['Disorganized', 'Unsatisfactory'],
+  //     date: new Date(2023, 11, 10),
+  //   },
+  //   {
+  //     id: 'b6b6e5e5-8bb8-492d-b1c1-5d85d0cfdcc1',
+  //     verified: false,
+  //     negSentiment: false,
+  //     review: 'Excellent clinic! The doctors are knowledgeable and caring.',
+  //     tags: ['Excellent', 'Knowledgeable', 'Caring'],
+  //     date: new Date(2023, 10, 28),
+  //   },
+  //   {
+  //     id: '5be6ca22-5e91-4a65-b6c8-1ae44a48bf84',
+  //     verified: true,
+  //     negSentiment: false,
+  //     review:
+  //       'Friendly staff and clean environment. Had a positive experience.',
+  //     tags: ['Friendly', 'Clean', 'Positive Experience'],
+  //     date: new Date(2023, 9, 5),
+  //   },
+  //   {
+  //     id: 'c0a9c360-83f8-4a25-9cb1-001cb8c8ad9e',
+  //     verified: true,
+  //     negSentiment: false,
+  //     review: 'Efficient service and short waiting times. Would visit again.',
+  //     tags: ['Efficient', 'Short Waiting Times', 'Recommended'],
+  //     date: new Date(2023, 8, 20),
+  //   },
+  // ]
 
   const isMobile = useIsMobile()
   const router = useRouter()
@@ -68,7 +69,7 @@ const IndividualClinicPage = () => {
   const clinic = trpc.clinic.fetchClinicById.useSuspenseQuery({
     clinicId: clinicId,
   })[0]
-
+  const reviewList = clinic.reviews
   const [verified, setVerified] = useState(false)
   const [reviews, setReviews] = useState(reviewList)
   const handleFilter = () => {

@@ -13,8 +13,8 @@ export const createClinicSchema = z.object({
 export const createReviewSchema = z.object({
   verified: z.boolean(),
   negSentiment: z.boolean(),
-  review: z.string().min(1),
-  tags: z.string().array().optional(),
-  date: z.string().datetime(),
+  reviewContent: z.string().min(1),
+  concernValues: z.string().array().optional(),
+  descriptionValues: z.string().array().optional(),
   clinicId: z.string().min(1),
 })
