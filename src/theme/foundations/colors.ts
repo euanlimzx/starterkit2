@@ -285,7 +285,7 @@ export const colors = {
       critical: '#c03434',
       'critical-subtle': '#fef7f7',
     },
-    'focus-default': '#1361F0',
+    'focus-default': '#CF1A68',
     'focus-inverse': '#ffffff',
     'input-prefilled': '#fffae1',
     ui: '#ffffff',
