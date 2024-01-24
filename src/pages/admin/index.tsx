@@ -2,54 +2,60 @@ import { Stack, Button } from '@chakra-ui/react'
 import { trpc } from '~/utils/trpc'
 
 const Test = () => {
-  //chatgpt summarise route
-  const summariseClinicAPI = trpc.clinic.summariseReviews.useMutation()
-  const summariseClinic = async () => {
-    const data = await summariseClinicAPI.mutate({
-      clinicId: '90a2b1c3-6f87-402e-a8b3-5cf2f4c28a94',
-    })
-    console.log(data)
-  }
-  //create Clinic
-  const createClinicAPI = trpc.clinic.createManyClinics.useMutation()
-  const createClinic = () => createClinicAPI.mutate()
-  //create a Review
-  const createReviewAPI = trpc.review.createReview.useMutation()
-  const createReview = () => {
-    createReviewAPI.mutate({
-      content: 'Wow this clinic is great',
-      verified: true,
-      clinicId: 'clrhbsnbr0008bod8zsz91io7',
-      userId: 'clrgot2io0000m9mm1cm0si3w',
-    })
-  }
-  //fetch Users THIS CURLY BRACE IS WRONG USE SQUARE BRACKETS INSTEAD
-  const { data: userData, refetch: refetchUsers } =
-    trpc.review.fetchUsers.useQuery()
-  const fetchUsers = async () => {
-    await refetchUsers()
-    console.log(userData)
-  }
-  //fetch Clinics
-  const { data: clinicData, refetch: refetchClinics } =
-    trpc.clinic.fetchClinics.useQuery()
-  const fetchClinics = async () => {
-    await refetchClinics()
-    console.log(clinicData)
-  }
-  //fetch Clinic by Id
-  const { data: clinicByIdData, refetch: refectchClinicById } =
-    trpc.clinic.fetchClinicById.useQuery({
-      clinicId: 'clrhbsnbr0008bod8zsz91io7',
-    })
-  const fetchClinicById = async () => {
-    await refectchClinicById()
-    console.log(clinicByIdData)
-  }
+  // //chatgpt summarise route
+  // const summariseClinicAPI = trpc.clinic.summariseReviews.useMutation()
+  // const summariseClinic = async () => {
+  //   const data = await summariseClinicAPI.mutate({
+  //     clinicId: '90a2b1c3-6f87-402e-a8b3-5cf2f4c28a94',
+  //   })
+  //   console.log(data)
+  // }
+  // //create Clinic
+  // const createClinicAPI = trpc.clinic.createManyClinics.useMutation()
+  // const createClinic = () => createClinicAPI.mutate()
+  // //create a Review
+  // const createReviewAPI = trpc.review.createReview.useMutation()
+  // const createReview = () => {
+  //   createReviewAPI.mutate({
+  //     content: 'Wow this clinic is great',
+  //     verified: true,
+  //     clinicId: 'clrhbsnbr0008bod8zsz91io7',
+  //     userId: 'clrgot2io0000m9mm1cm0si3w',
+  //   })
+  // }
+  // //fetch Users THIS CURLY BRACE IS WRONG USE SQUARE BRACKETS INSTEAD
+  // const { data: userData, refetch: refetchUsers } =
+  //   trpc.review.fetchUsers.useQuery()
+  // const fetchUsers = async () => {
+  //   await refetchUsers()
+  //   console.log(userData)
+  // }
+  // //fetch Clinics
+  // const { data: clinicData, refetch: refetchClinics } =
+  //   trpc.clinic.fetchClinics.useQuery()
+  // const fetchClinics = async () => {
+  //   await refetchClinics()
+  //   console.log(clinicData)
+  // }
+  // //fetch Clinic by Id
+  // const { data: clinicByIdData, refetch: refectchClinicById } =
+  //   trpc.clinic.fetchClinicById.useQuery({
+  //     clinicId: 'clrhbsnbr0008bod8zsz91io7',
+  //   })
+  // const fetchClinicById = async () => {
+  //   await refectchClinicById()
+  //   console.log(clinicByIdData)
+  // }
+
+  // const [data, refetch] = trpc.review.getSentiment.useSuspenseQuery({
+  //   phrase: 'dr lim was amazing ngl',
+  // })
+  // const getSentiment = () => [console.log(data)]
   return (
     <>
       <h1>these buttons are here just to test my api routes hehe</h1>
-      <Stack gap={4} direction={'row'}>
+      {/* <Button onClick={getSentiment}>click me</Button> */}
+      {/* <Stack gap={4} direction={'row'}>
         <Button onClick={fetchUsers}>
           Click here to fetch a list of users
         </Button>
@@ -64,7 +70,7 @@ const Test = () => {
       <Stack gap={4} direction={'row'}>
         <Button onClick={createClinic}>Click here to create a clinic</Button>
         <Button onClick={createReview}>Click here to create a Review</Button>
-      </Stack>
+      </Stack> */}
     </>
   )
 }
