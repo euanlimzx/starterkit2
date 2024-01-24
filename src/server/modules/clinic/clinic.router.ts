@@ -6,6 +6,12 @@
 import { createClinicSchema } from '~/schemas/clinic&review'
 import { publicProcedure, router } from '~/server/trpc'
 import { z } from 'zod'
+import { env } from '~/env.mjs'
+import OpenAI from 'openai'
+
+const openai = new OpenAI({
+  apiKey: env.OPENAI_API_KEY,
+})
 
 export const clinicRouter = router({
   createManyClinics: publicProcedure.mutation(async ({ ctx }) => {
@@ -100,5 +106,42 @@ export const clinicRouter = router({
           reviews: true,
         },
       })
+    }),
+  summariseReviews: publicProcedure
+    .input(z.object({ clinicId: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const reviews = await ctx.prisma.review.findMany({
+        where: { clinicId: input.clinicId },
+      })
+      if (reviews.length == 0) {
+        return 'There are no reviews for this clinic'
+      } else {
+        const reviewContentList = reviews.map((review) => {
+          return review.reviewContent
+        })
+        const chatgpt = await openai.chat.completions.create({
+          model: 'gpt-3.5-turbo',
+          messages: [
+            {
+              role: 'system',
+              content:
+                'You are a assistant that helps women in chosing the right doctor by skillfully summarizing different reviews about a clinic into an overall short review about the clinic',
+            },
+            {
+              role: 'user',
+              content: `Based on the following list of reviews, summarize how people generally feel about the clinic. Here are the reviews ${reviewContentList}`,
+            },
+          ],
+        })
+        const updateClinic = await ctx.prisma.clinic.update({
+          where: {
+            id: input.clinicId,
+          },
+          data: {
+            specialReview: chatgpt.choices[0]?.message.content,
+          },
+        })
+        return updateClinic
+      }
     }),
 })

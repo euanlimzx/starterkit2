@@ -2,6 +2,14 @@ import { Stack, Button } from '@chakra-ui/react'
 import { trpc } from '~/utils/trpc'
 
 const Test = () => {
+  //chatgpt summarise route
+  const summariseClinicAPI = trpc.clinic.summariseReviews.useMutation()
+  const summariseClinic = async () => {
+    const data = await summariseClinicAPI.mutate({
+      clinicId: '90a2b1c3-6f87-402e-a8b3-5cf2f4c28a94',
+    })
+    console.log(data)
+  }
   //create Clinic
   const createClinicAPI = trpc.clinic.createManyClinics.useMutation()
   const createClinic = () => createClinicAPI.mutate()

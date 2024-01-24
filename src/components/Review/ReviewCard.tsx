@@ -24,7 +24,7 @@ const ReviewCard = ({ review }: { review: review }) => {
       return days <= 1 ? '1 day ago' : `${days} days ago`
     }
   }
-  console.log(review.date)
+
   return (
     <Box pb={'1.5rem'}>
       <Stack>

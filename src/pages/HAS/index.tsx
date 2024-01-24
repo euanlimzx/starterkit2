@@ -2,6 +2,7 @@ import { Flex, Stack, Text, Box, Button } from '@chakra-ui/react'
 import { BiRightArrowAlt } from 'react-icons/bi'
 import { LandingSection, SectionBodyText } from '~/features/landing/components'
 import NextLink from 'next/link'
+import { trpc } from '~/utils/trpc'
 
 const createReview = () => {
   return (

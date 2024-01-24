@@ -83,6 +83,7 @@ const server = z
       z.string().length(0),
     ]),
     SESSION_SECRET: z.string().min(32),
+    OPENAI_API_KEY: z.any(),
   })
   // Add on schemas as needed that requires conditional validation.
   .merge(baseR2Schema)
@@ -122,7 +123,7 @@ const server = z
   })
 
 /**
- * You can't destruct `process.env` as a regular object in the Next.js edge runtimes (e.g.
+ * You can't destruct `process.env` as a regular object in the Next.js edge  s (e.g.
  * middlewares) or client-side so we need to destruct manually.
  * Intellisense should work due to inference.
  *
@@ -148,7 +149,9 @@ const processEnv = {
   SGID_CLIENT_SECRET: process.env.SGID_CLIENT_SECRET,
   SGID_PRIVATE_KEY: process.env.SGID_PRIVATE_KEY,
   SGID_REDIRECT_URI: process.env.SGID_REDIRECT_URI,
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   // Client-side env vars
+
   NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME,
   NEXT_PUBLIC_ENABLE_STORAGE: process.env.NEXT_PUBLIC_ENABLE_STORAGE,
   NEXT_PUBLIC_ENABLE_SGID: process.env.NEXT_PUBLIC_ENABLE_SGID,
