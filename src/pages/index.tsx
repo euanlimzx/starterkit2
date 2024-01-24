@@ -150,13 +150,12 @@ const LandingPage = () => {
               mt="1rem"
               textAlign={{ base: 'left', md: 'center' }}
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-              quam mollitia, nemo quibusdam dolorem autem!
+              Select different regions to find clinics near you.
             </SectionBodyText>
             <Box mt="2.5rem">
               <MultiSelect
                 colorScheme="pink"
-                placeholder={'Select a region'}
+                placeholder={'All of Singapore'}
                 items={[
                   {
                     value: 'Central',
