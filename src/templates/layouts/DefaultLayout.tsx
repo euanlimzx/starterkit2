@@ -7,8 +7,9 @@ import Head from 'next/head'
 import { type ReactNode } from 'react'
 import { useEnv } from '~/hooks/useEnv'
 import { AppGrid } from '../AppGrid'
-import { Box, Button, Divider } from '@chakra-ui/react'
+import { Box, Button, Divider, Text } from '@chakra-ui/react'
 import NextLink from 'next/link'
+import Link from 'next/link'
 
 type DefaultLayoutProps = { children: ReactNode }
 
@@ -24,13 +25,20 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
 
       <main>
         <Banner variant="error" size={'sm'}>
-          Hackathon prototype, not a real product!
+          <Text as="span">
+            This is an exploratory prototype that was built for&nbsp;
+            <Link href="https://hack.gov.sg/" target="_blank">
+              <Text textDecoration={'underline'} as="span">
+                OGP’s Hack for Public Good
+              </Text>
+            </Link>
+          </Text>
         </Banner>
         <RestrictedGovtMasthead />
 
         <Box display={'flex'} justifyContent={'start'} m={'0.5rem'}>
           <Button variant="clear" as={NextLink} href={'/'} color={'black'}>
-            Femhealth
+            AskHer
           </Button>
         </Box>
         <Divider />

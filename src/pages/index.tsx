@@ -1,11 +1,6 @@
 import { Box, Flex, Stack, Text } from '@chakra-ui/react'
-import {
-  Button,
-  MultiSelect,
-  Toggle,
-  useIsMobile,
-} from '@opengovsg/design-system-react'
-import { useState, useEffect, useRef } from 'react'
+import { MultiSelect, Toggle } from '@opengovsg/design-system-react'
+import { useEffect, useState } from 'react'
 import ClinicList from '~/components/Clinic/ClinicList'
 import { LandingSection, SectionBodyText } from '~/features/landing/components'
 import { trpc } from '~/utils/trpc'
@@ -80,10 +75,6 @@ const LandingPage = () => {
 
   const clinicDataList = trpc.clinic.fetchClinics.useSuspenseQuery()[0]
 
-  const handleClick = () => {
-    ref.current?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   const showClinicCopy = () => {
     if (multiselectValues.length == 1) {
       return `Clinics providing women's health services in ${multiselectValues[0]} Singapore`
@@ -134,7 +125,6 @@ const LandingPage = () => {
   const [clinics, setClinics] = useState(clinicDataList.sort(sortByRating))
   const [filteredSeach, setFilteredSearch] = useState(false)
   useEffect(handleSearch, [multiselectValues, female])
-  const ref = useRef(null)
 
   return (
     <>
@@ -192,12 +182,6 @@ const LandingPage = () => {
                 values={multiselectValues}
               />
             </Box>
-
-            <Box mt="1rem">
-              <Button w="100%" onClick={handleClick}>
-                Find a clinic
-              </Button>
-            </Box>
           </Flex>
         </Stack>
       </LandingSection>
@@ -207,7 +191,7 @@ const LandingPage = () => {
           align="center"
           spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
         >
-          <Flex flexDir="column" flex={1} ref={ref}>
+          <Flex flexDir="column" flex={1}>
             <Text as="h1" textStyle={'h4'} color="base.content.strong">
               {filteredSeach
                 ? showClinicCopy()
