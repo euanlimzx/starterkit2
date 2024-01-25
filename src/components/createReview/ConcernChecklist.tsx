@@ -42,6 +42,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
   const [TextAreaIsInvalid, setTextAreaIsInvalid] = useState(false)
 
   const submitReview = trpc.review.createReview.useMutation()
+  const summariseReviews = trpc.clinic.summariseReviews.useMutation()
   const handleSubmit = async () => {
     if (concernValues.length == 0 && otherContent.length == 0) {
       setConcernChecklistInvalid(true)
@@ -50,11 +51,11 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
     }
     if (reviewContent.length == 0) {
       setTextAreaIsInvalid(true)
-      console.log('invalid review')
+      console.log('invalid reviewContent')
       return
     }
     if (other && otherContent.length != 0) {
-      await submitReview.mutateAsync({
+      const submittedReview = await submitReview.mutateAsync({
         // console.log({
         clinicId: clinicId,
         negSentiment: false,
@@ -64,8 +65,9 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
         descriptionValues: descriptionValues,
         reviewContent: reviewContent,
       })
+      console.log(submittedReview)
     } else {
-      await submitReview.mutateAsync({
+      const submittedReview = await submitReview.mutateAsync({
         // console.log({
         clinicId: clinicId,
         negSentiment: true,
@@ -75,8 +77,13 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
         descriptionValues: descriptionValues,
         reviewContent: reviewContent,
       })
+      console.log(submittedReview)
     }
     await router.push(`/review/thankyou/${clinicId}`)
+    const summarised = await summariseReviews.mutateAsync({
+      clinicId: clinicId,
+    })
+    console.log(summarised)
   }
 
   return (

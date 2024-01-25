@@ -83,21 +83,23 @@ const ReviewCard = ({ review }: { review: review }) => {
             )
           })}
         </Box>
-        <Box>
-          {review.descriptionValues.map((tag, index) => {
-            return (
-              <Tag
-                colorScheme="gray"
-                borderRadius={'2rem'}
-                mx="2px"
-                my="4px"
-                key={index}
-              >
-                {tag}
-              </Tag>
-            )
-          })}
-        </Box>
+        {review.descriptionValues && (
+          <Box>
+            {review.descriptionValues.map((tag, index) => {
+              return (
+                <Tag
+                  colorScheme="gray"
+                  borderRadius={'2rem'}
+                  mx="2px"
+                  my="4px"
+                  key={index}
+                >
+                  {tag}
+                </Tag>
+              )
+            })}
+          </Box>
+        )}
       </Stack>
     </Box>
   )

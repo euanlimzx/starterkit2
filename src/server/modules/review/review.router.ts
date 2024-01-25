@@ -53,7 +53,7 @@ export const reviewRouter = router({
         negSentiment = true
       }
 
-      await ctx.prisma.review.create({
+      const createdReview = await ctx.prisma.review.create({
         data: {
           verified: input.verified,
           clinicId: input.clinicId,
@@ -63,6 +63,7 @@ export const reviewRouter = router({
           reviewContent: input.reviewContent,
         },
       })
+      return createdReview
     }),
   getSentiment: publicProcedure
     .input(z.object({ phrase: z.string() }))

@@ -7,7 +7,8 @@ const ReviewList = ({ reviewList }: { reviewList: reviewList }) => {
   if (reviewList.length == 0) {
     return (
       <Box py={'3rem'} px={'5rem'} textAlign={'center'}>
-        There are no reviews for this clinic yet!
+        There are no reviews for this clinic yet! Be the first to review this
+        clinic
       </Box>
     )
   }

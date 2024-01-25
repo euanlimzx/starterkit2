@@ -1,4 +1,4 @@
-import { Box, Flex, Stack, Text, Tag, Divider } from '@chakra-ui/react'
+import { Box, Flex, Stack, Text, Tag, Divider, Icon } from '@chakra-ui/react'
 import { Button, useIsMobile, Toggle } from '@opengovsg/design-system-react'
 import NextLink from 'next/link'
 import { BiLeftArrowAlt } from 'react-icons/bi'
@@ -7,6 +7,7 @@ import ReviewList from '~/components/Review/ReviewList'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { trpc } from '~/utils/trpc'
+import { BsStars } from 'react-icons/bs'
 
 export type review = {
   id: string
@@ -198,6 +199,13 @@ const IndividualClinicPage = () => {
           p={'1.25rem'}
           borderRadius={'0.5rem'}
         >
+          <Box mb={'0.5rem'} display={'flex'} alignItems={'center'}>
+            <Icon as={BsStars} aria-hidden fontSize="1rem" />
+            <Text textStyle={'caption-2'} as="span" ml={'0.5rem'}>
+              AI-generated summary
+            </Text>
+          </Box>
+
           <Text fontSize={'sm'}>{clinic?.specialReview}</Text>
         </Box>
         <Divider />
