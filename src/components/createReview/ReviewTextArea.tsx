@@ -1,22 +1,19 @@
 import {
   Box,
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  Stack,
-  Text,
-  Textarea,
   FormControl,
   FormErrorMessage,
+  Text,
+  Textarea,
 } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import { trpc } from '~/utils/trpc'
 
 function ReviewTextArea({
   ReviewContent,
   setReviewContent,
   TextAreaIsInvalid,
+}: {
+  ReviewContent: string
+  setReviewContent: React.Dispatch<React.SetStateAction<string>>
+  TextAreaIsInvalid: boolean
 }) {
   return (
     <>

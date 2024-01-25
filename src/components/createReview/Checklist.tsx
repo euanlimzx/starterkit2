@@ -19,6 +19,11 @@ function Checklist({
   checklistList,
   checklistValues,
   setChecklistValues,
+}: {
+  ChecklistIsInvalid: boolean
+  checklistList: string[]
+  checklistValues: string[]
+  setChecklistValues: React.Dispatch<React.SetStateAction<string[]>>
 }) {
   return (
     <FormControl isInvalid={ChecklistIsInvalid}>
