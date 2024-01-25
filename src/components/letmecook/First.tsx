@@ -10,22 +10,27 @@ const First = () => {
       }
       height="75vh"
     >
-      <Stack height="100%">
-        <Box
-          w="50%"
-          height="100%"
-          display={'flex'}
-          flexDir={'column'}
-          ml={'5rem'}
-          mt={'10rem'}
+      <Box
+        width={{ base: '100%', md: '30%' }}
+        justifyContent={'center'}
+        alignItems={'center'}
+        display={'flex'}
+        height="100%"
+      >
+        <Stack
+          direction={'column'}
+          alignItems={{ base: 'center', md: 'start' }}
+          ml={{ base: '', md: '10rem' }}
+          spacing={0}
         >
           <Text
-            fontSize={'10xl'}
+            fontSize={{ base: '8xl', md: '10xl' }}
             fontWeight={'semibold'}
             color={'#F35A2B'}
             fontFamily={'DMSans'}
             lineHeight={'1'}
             letterSpacing={'-0.03em'}
+            textAlign={{ base: 'center', md: 'start' }}
           >
             empowering your health choices
           </Text>
@@ -47,8 +52,9 @@ const First = () => {
           >
             Explore topics by age group
           </Button>
-        </Box>
-      </Stack>
+        </Stack>
+      </Box>
+      <Box width={{ base: '0%', md: '70%' }}></Box>
     </Box>
   )
 }

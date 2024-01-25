@@ -2,6 +2,7 @@ import { Box, Stack, Text } from '@chakra-ui/react'
 import { Button, Toggle } from '@opengovsg/design-system-react'
 import { FaArrowRight } from 'react-icons/fa'
 import ClinicRow from '~/components/Clinic/ClinicRow'
+import ClinicList from '../Clinic/ClinicList'
 
 const Third = () => {
   const clinicDataList = [
@@ -38,12 +39,20 @@ const Third = () => {
     },
   ]
   return (
-    <Stack p={'5rem'} alignItems={'center'} spacing={7}>
-      <Box w={'55%'}>
-        <Text fontSize={'2xl'} color={'#F35A2B'} textAlign={'center'}>
+    <Stack p={{ base: '2rem', md: '5rem' }} alignItems={'center'} spacing={7}>
+      <Box w={{ base: '100%', md: '55%' }}>
+        <Text
+          fontSize={{ base: 'lg', md: '2xl' }}
+          color={'#F35A2B'}
+          textAlign={'center'}
+        >
           Hear from real women&apos;s experiences.
         </Text>
-        <Text fontSize={'md'} textAlign={'center'} mt={'1.5rem'}>
+        <Text
+          fontSize={{ base: 'sm', md: 'md' }}
+          textAlign={'center'}
+          mt={'1.5rem'}
+        >
           Find verified doctors and clinics specialised in women’s health based
           on honest reviews.
         </Text>
@@ -66,8 +75,8 @@ const Third = () => {
         w={'fit-content'}
         rightIcon={<FaArrowRight />}
         alignItems={'center'}
-        px={'2rem'}
-        mt={'4rem'}
+        px={{ base: '1rem', md: '2rem' }}
+        mt={{ base: '1rem', md: '4rem' }}
       >
         Explore more clinics around you
       </Button>

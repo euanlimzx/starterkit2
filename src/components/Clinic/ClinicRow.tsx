@@ -9,9 +9,9 @@ const ClinicList = ({ clinics }: { clinics: clinicDataList }) => {
   return (
     <>
       <Stack
-        direction={'row'}
+        direction={{ base: 'column', md: 'row' }}
         pt={'1rem'}
-        spacing={5}
+        spacing={{ base: 2, md: 5 }}
         height={'100%'}
         justifyContent={'center'}
       >
