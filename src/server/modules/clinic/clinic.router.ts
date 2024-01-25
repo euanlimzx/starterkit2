@@ -110,12 +110,27 @@ export const clinicRouter = router({
   summariseReviews: publicProcedure
     .input(z.object({ clinicId: z.string() }))
     .mutation(async ({ input, ctx }) => {
+      function calculateNegSentimentPercentage(objects) {
+        if (!objects || objects.length === 0) {
+          return 0 // Handle empty or undefined array
+        }
+
+        const negSentimentFalseCount = objects.reduce((count, obj) => {
+          return count + (obj.negSentiment === false ? 1 : 0)
+        }, 0)
+
+        const percentage = (negSentimentFalseCount / objects.length) * 100
+        return percentage
+      }
+
       const reviews = await ctx.prisma.review.findMany({
         where: { clinicId: input.clinicId },
       })
       if (reviews.length == 0) {
         return 'There are no reviews for this clinic'
       } else {
+        const rating = calculateNegSentimentPercentage(reviews)
+        const negSentiment = rating <= 65 ? true : false
         const reviewContentList = reviews.map((review) => {
           return review.reviewContent
         })
@@ -139,6 +154,8 @@ export const clinicRouter = router({
           },
           data: {
             specialReview: chatgpt.choices[0]?.message.content,
+            negSentiment: negSentiment,
+            rating: Math.round(rating).toString(),
           },
         })
         return updateClinic

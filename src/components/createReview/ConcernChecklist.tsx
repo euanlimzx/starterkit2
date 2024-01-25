@@ -1,7 +1,7 @@
 import { Box, Button, Checkbox, Text, Textarea } from '@chakra-ui/react'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { trpc } from '~/utils/trpc'
 import Checklist from './Checklist'
 import ReviewTextArea from './ReviewTextArea'
@@ -9,7 +9,7 @@ import ReviewTextArea from './ReviewTextArea'
 function ConcernChecklist({ clinicId }: { clinicId: string }) {
   const router = useRouter()
   const isVerified = useSearchParams().get('verified') ? true : false
-  console.log(isVerified)
+
   // first section
   const [concernChecklistInvalid, setConcernChecklistInvalid] = useState(false)
   const [concernValues, setConcernValues] = useState([])
@@ -20,6 +20,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
     'General Fertility',
     'Acne/Hormones',
   ]
+  const concernRef = useRef(null)
   //other section
   const [other, setOther] = useState(false)
   const [otherContent, setOtherContent] = useState('')
@@ -34,17 +35,19 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
   //third section
   const [reviewContent, setReviewContent] = useState('')
   const [TextAreaIsInvalid, setTextAreaIsInvalid] = useState(false)
-
+  const textAreaRef = useRef(null)
   const submitReview = trpc.review.createReview.useMutation()
   const summariseReviews = trpc.clinic.summariseReviews.useMutation()
   const handleSubmit = async () => {
     if (concernValues.length == 0 && otherContent.length == 0) {
       setConcernChecklistInvalid(true)
+      concernRef.current?.scrollIntoView({ behavior: 'smooth' })
       console.log('invalid concerns')
       return
     }
     if (reviewContent.length == 0) {
       setTextAreaIsInvalid(true)
+      textAreaRef.current?.scrollIntoView({ behavior: 'smooth' })
       console.log('invalid reviewContent')
       return
     }
@@ -83,7 +86,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
   return (
     <>
       <Box shadow={'sm'} p={'1.5rem'} mb={'1rem'} borderRadius={'0.5rem'}>
-        <Text textStyle={'subhead-1'} pb={'1rem'}>
+        <Text textStyle={'subhead-1'} pb={'1rem'} ref={concernRef}>
           Which concern(s) do you think the doctor was able to address?
         </Text>
         <Checklist
@@ -96,6 +99,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
           onChange={() => {
             setOther((other) => !other)
           }}
+          mt={'0.75rem'}
         >
           Other
         </Checkbox>
@@ -128,6 +132,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
           ChecklistIsInvalid={false}
         />
       </Box>
+      <Box ref={textAreaRef}></Box>
       <ReviewTextArea
         ReviewContent={reviewContent}
         setReviewContent={setReviewContent}

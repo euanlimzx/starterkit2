@@ -22,10 +22,8 @@ function ReviewTextArea({
     <>
       <FormControl isInvalid={TextAreaIsInvalid}>
         <Box shadow={'sm'} p={'1.5rem'} mb={'1rem'} borderRadius={'0.5rem'}>
-          <Text textStyle={'subhead-1'} pb={'1rem'}>
-            Share your review
-          </Text>
-          <Text textStyle={'body-2'} pb={'1rem'}>
+          <Text textStyle={'subhead-1'}>Share your review</Text>
+          <Text textStyle={'body-2'} pt={'0.5rem'} pb={'1rem'}>
             What would you tell your friend if she said she was thinking about
             coming here?
           </Text>
