@@ -15,6 +15,7 @@ export const createReviewSchema = z.object({
   negSentiment: z.boolean(),
   reviewContent: z.string().min(1),
   concernValues: z.string().array().optional(),
+  others: z.string(),
   descriptionValues: z.string().array().optional(),
   clinicId: z.string().min(1),
 })

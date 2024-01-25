@@ -80,13 +80,18 @@ const ReviewCard = ({ review }: { review: review }) => {
           >
             Visited for:
           </Text>
-          <Text textStyle={'caption-2'} color={'grey.400'}>
+          <Text textStyle={'caption-2'} color={'grey.400'} as="span">
             {review.concernValues
               .map((concern) => {
                 return `${concern}`
               })
               .join(', ')}
           </Text>
+          {review.others.length > 0 && (
+            <Text textStyle={'caption-2'} color={'grey.400'} as="span">
+              {`, Others: ${review.others}`}
+            </Text>
+          )}
         </Box>
         <Text>{review.reviewContent}</Text>
         {review.descriptionValues && (

@@ -58,7 +58,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
         negSentiment: false,
         verified: isVerified,
         concernValues: concernValues,
-        // otherConcerns: otherContent,
+        others: otherContent,
         descriptionValues: descriptionValues,
         reviewContent: reviewContent,
       })
@@ -70,7 +70,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
         negSentiment: true,
         verified: isVerified,
         concernValues: concernValues,
-        // otherConcerns: '',
+        otherConcerns: '',
         descriptionValues: descriptionValues,
         reviewContent: reviewContent,
       })

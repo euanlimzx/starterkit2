@@ -14,6 +14,7 @@ export type review = {
   verified: boolean
   negSentiment: boolean
   reviewContent: string
+  others: string
   concernValues: string[]
   descriptionValues: string[]
   date: Date

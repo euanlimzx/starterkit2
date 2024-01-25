@@ -58,6 +58,7 @@ export const reviewRouter = router({
           verified: input.verified,
           clinicId: input.clinicId,
           concernValues: input.concernValues,
+          others: input.others,
           descriptionValues: input.descriptionValues,
           negSentiment: negSentiment,
           reviewContent: input.reviewContent,
