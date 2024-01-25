@@ -38,12 +38,16 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
 
         <Box display={'flex'} justifyContent={'start'} m={'0.5rem'}>
           <Button variant="clear" as={NextLink} href={'/'} color={'black'}>
-            AskHer
+            <Text as="span" fontWeight={'light'}>
+              ask
+            </Text>
+            <Text as="span" fontWeight={'semibold'} fontStyle="italic">
+              her
+            </Text>
           </Button>
         </Box>
         <Divider />
-        <Box mx={{ base: '0rem', md: '16rem' }}> {children}</Box>
-        {/* <Box> {children}</Box>*/}
+        <Box> {children}</Box>
 
         <AppGrid bg="#FFFFFFF" px="1.5rem">
           <Box gridColumn={{ base: '1 / -1', md: '2 / 12' }}>

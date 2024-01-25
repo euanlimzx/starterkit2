@@ -1,4 +1,4 @@
-import { Flex, Stack, Text, Alert, AlertIcon } from '@chakra-ui/react'
+import { Flex, Stack, Text, Alert, AlertIcon, Box } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
@@ -67,30 +67,33 @@ const CreateReview = () => {
   })[0]
 
   return (
-    <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: '5rem' }} px={0}>
-      <Stack
-        direction={{ base: 'column', lg: 'row' }}
-        align="center"
-        spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
-      >
-        <Flex flexDir="column" flex={1}>
-          <Text as="h1" textStyle={'h4'} color="base.content.strong">
-            {`You're reviewing ${clinic?.name}`}
-          </Text>
-          <SectionBodyText my="1.5rem">
-            Let us know how your consultation went.
-          </SectionBodyText>
-          {!verified && (
-            <Alert status="warning" mb="1.5rem">
-              <AlertIcon />
-              You are leaving a review as an unverified visitor.
-            </Alert>
-          )}
+    <Box mx={{ base: '0rem', md: '16rem' }}>
+      {' '}
+      <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: '5rem' }} px={0}>
+        <Stack
+          direction={{ base: 'column', lg: 'row' }}
+          align="center"
+          spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
+        >
+          <Flex flexDir="column" flex={1}>
+            <Text as="h1" textStyle={'h4'} color="base.content.strong">
+              {`You're reviewing ${clinic?.name}`}
+            </Text>
+            <SectionBodyText my="1.5rem">
+              Let us know how your consultation went.
+            </SectionBodyText>
+            {!verified && (
+              <Alert status="warning" mb="1.5rem">
+                <AlertIcon />
+                You are leaving a review as an unverified visitor.
+              </Alert>
+            )}
 
-          <ConcernChecklist clinicId={clinicId} />
-        </Flex>
-      </Stack>
-    </LandingSection>
+            <ConcernChecklist clinicId={clinicId} />
+          </Flex>
+        </Stack>
+      </LandingSection>
+    </Box>
   )
 }
 

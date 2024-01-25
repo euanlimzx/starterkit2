@@ -128,89 +128,98 @@ const LandingPage = () => {
 
   return (
     <>
-      <LandingSection bg="#FFFFFF" pt={{ base: '3rem', md: '10rem' }} px={0}>
-        <Stack
-          direction={{ base: 'column', lg: 'row' }}
-          align="left"
-          spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
-        >
-          <Flex flexDir="column" flex={1} px={{ base: '0rem', md: '4rem' }}>
-            <Text
-              as="h1"
-              textStyle={{
-                base: 'responsive-display.heavy',
-                md: 'responsive-heading.light-480',
-              }}
-              textAlign={{ base: 'left', md: 'center' }}
-              color="base.content.strong"
-            >
-              Find a doctor for your women&apos;s health concerns.
-            </Text>
-            <SectionBodyText
-              mt="1rem"
-              textAlign={{ base: 'left', md: 'center' }}
-            >
-              Select different regions to find clinics near you.
-            </SectionBodyText>
-            <Box mt="2.5rem">
-              <MultiSelect
-                colorScheme="pink"
-                placeholder={'All of Singapore'}
-                items={[
-                  {
-                    value: 'Central',
-                  },
-                  {
-                    value: 'North',
-                  },
-                  {
-                    value: 'East',
-                  },
-                  {
-                    value: 'Northeast',
-                  },
-                  {
-                    value: 'West',
-                  },
-                ]}
-                name="RegionSelect"
-                onChange={(e) => {
-                  console.log(e)
-                  setMultiSelectValues([...new Set(e)])
+      {' '}
+      <Box mx={{ base: '0rem', md: '16rem' }}>
+        <LandingSection bg="#FFFFFF" pt={{ base: '3rem', md: '10rem' }} px={0}>
+          <Stack
+            direction={{ base: 'column', lg: 'row' }}
+            align="left"
+            spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
+          >
+            <Flex flexDir="column" flex={1} px={{ base: '0rem', md: '4rem' }}>
+              <Text
+                as="h1"
+                textStyle={{
+                  base: 'responsive-display.heavy',
+                  md: 'responsive-heading.light-480',
                 }}
-                values={multiselectValues}
-              />
-            </Box>
-          </Flex>
-        </Stack>
-      </LandingSection>
-      <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: '4rem' }} px={0}>
-        <Stack
-          direction={{ base: 'column', lg: 'row' }}
-          align="center"
-          spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
-        >
-          <Flex flexDir="column" flex={1}>
-            <Text as="h1" textStyle={'h4'} color="base.content.strong">
-              {filteredSeach
-                ? showClinicCopy()
-                : 'Find a clinic that meets your needs based on our verified reviews'}
-            </Text>
-            <SectionBodyText mt="0.5rem">
-              Select a clinic to read their reviews
-            </SectionBodyText>
-            <Box pt={'2rem'}>
-              <Toggle
-                description=""
-                label="View clinics with female practitioners"
-                onChange={() => {
-                  setFemale((female) => !female)
-                }}
-              />
-            </Box>
-            <ClinicList clinics={clinics} />
-          </Flex>
-        </Stack>
+                textAlign={{ base: 'left', md: 'center' }}
+                color="base.content.strong"
+              >
+                Find a doctor for your women&apos;s health concerns.
+              </Text>
+              <SectionBodyText
+                mt="1rem"
+                textAlign={{ base: 'left', md: 'center' }}
+              >
+                Select different regions to find clinics near you.
+              </SectionBodyText>
+              <Box mt="2.5rem">
+                <MultiSelect
+                  colorScheme="pink"
+                  placeholder={'All of Singapore'}
+                  items={[
+                    {
+                      value: 'Central',
+                    },
+                    {
+                      value: 'North',
+                    },
+                    {
+                      value: 'East',
+                    },
+                    {
+                      value: 'Northeast',
+                    },
+                    {
+                      value: 'West',
+                    },
+                  ]}
+                  name="RegionSelect"
+                  onChange={(e) => {
+                    console.log(e)
+                    setMultiSelectValues([...new Set(e)])
+                  }}
+                  values={multiselectValues}
+                />
+              </Box>
+            </Flex>
+          </Stack>
+        </LandingSection>
+      </Box>
+      <LandingSection
+        bg="base.canvas.brand-subtle"
+        pt={{ base: '2rem', md: '4rem' }}
+        px={0}
+      >
+        <Box mx={{ base: '0rem', md: '16rem' }}>
+          <Stack
+            direction={{ base: 'column', lg: 'row' }}
+            align="center"
+            spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
+          >
+            <Flex flexDir="column" flex={1}>
+              <Text as="h1" textStyle={'h4'} color="base.content.strong">
+                {filteredSeach
+                  ? showClinicCopy()
+                  : 'Find a clinic that meets your needs based on our verified reviews'}
+              </Text>
+              <SectionBodyText mt="0.5rem">
+                Select a clinic to read their reviews
+              </SectionBodyText>
+              <Box pt={'2rem'}>
+                <Toggle
+                  description=""
+                  label="View clinics with female practitioners"
+                  onChange={() => {
+                    setFemale((female) => !female)
+                  }}
+                />
+              </Box>
+              <ClinicList clinics={clinics} />
+            </Flex>
+          </Stack>
+        </Box>
       </LandingSection>
     </>
   )

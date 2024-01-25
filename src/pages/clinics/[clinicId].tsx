@@ -87,79 +87,131 @@ const IndividualClinicPage = () => {
 
   return (
     <>
-      <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: '4rem' }} px={0}>
-        <Stack
-          direction={{ base: 'column', lg: 'row' }}
-          align="left"
-          spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
-        >
-          <Flex flexDir="column" flex={1}>
-            <Box alignItems={'start'}>
-              <Button
-                leftIcon={<BiLeftArrowAlt fontSize="1.5rem" />}
-                variant={'clear'}
-                as={NextLink}
-                href={'/'}
-              >
-                Go back to all clinics
-              </Button>
-            </Box>
+      <Box mx={{ base: '0rem', md: '16rem' }}>
+        <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: '4rem' }} px={0}>
+          <Stack
+            direction={{ base: 'column', lg: 'row' }}
+            align="left"
+            spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
+          >
+            <Flex flexDir="column" flex={1}>
+              <Box alignItems={'start'}>
+                <Button
+                  leftIcon={<BiLeftArrowAlt fontSize="1.5rem" />}
+                  variant={'clear'}
+                  as={NextLink}
+                  href={'/'}
+                >
+                  Go back to all clinics
+                </Button>
+              </Box>
 
+              <Text
+                as="h1"
+                textStyle={{
+                  base: 'responsive-display.heavy',
+                  md: 'responsive-display.heavy-480',
+                }}
+                color="base.content.strong"
+                pt="1rem"
+              >
+                {clinic?.name}
+              </Text>
+              <SectionBodyText mt="1rem">{clinic?.address}</SectionBodyText>
+              {clinic?.femalePrac == true ? (
+                <Tag colorScheme="gray" borderRadius={'2rem'} my={'1.5rem'}>
+                  Female practitioner available
+                </Tag>
+              ) : (
+                <br />
+              )}
+              <Box>
+                <Stack direction={{ base: 'column', md: 'row' }}>
+                  <Button isFullWidth={isMobile} as={NextLink} href={'/HAS'}>
+                    Book a women&apos;s health appointment
+                  </Button>
+                  <Button
+                    isFullWidth={isMobile}
+                    as={NextLink}
+                    href={`/review/${clinic?.id}`}
+                    variant={'outline'}
+                  >
+                    Write a review for this clinic
+                  </Button>
+                </Stack>
+              </Box>
+            </Flex>
+          </Stack>
+        </LandingSection>
+        <LandingSection
+          bg="#FFFFFF"
+          pt={{ base: '0.5rem', md: '1rem' }}
+          px={0}
+          pb={0}
+        >
+          <Text
+            as="h3"
+            textStyle={{
+              base: 'h4',
+              md: 'h4',
+            }}
+            color="base.content.strong"
+            py="1rem"
+          >
+            {`Here’s what visitors with women’s health concerns said about ${clinic?.name}`}
+          </Text>
+          <Box>
             <Text
-              as="h1"
+              as="h3"
               textStyle={{
-                base: 'responsive-display.heavy',
-                md: 'responsive-display.heavy-480',
+                base: 'h4',
+                md: 'h4',
               }}
               color="base.content.strong"
-              pt="1rem"
             >
-              {clinic?.name}
+              {clinic?.rating}%
             </Text>
-            <SectionBodyText mt="1rem">{clinic?.address}</SectionBodyText>
-            {clinic?.femalePrac == true ? (
-              <Tag colorScheme="gray" borderRadius={'2rem'} my={'1.5rem'}>
-                Female practitioner available
-              </Tag>
+            <Text as="span" fontSize="sm">
+              of reviewers rated their experience as
+            </Text>
+            {clinic?.negSentiment ? (
+              <Text
+                as="span"
+                fontSize="sm"
+                color={'orange.500'}
+                fontWeight={'bold'}
+              >
+                &nbsp;Positive
+              </Text>
             ) : (
-              <br />
+              <Text
+                as="span"
+                fontSize="sm"
+                color={'green.500'}
+                fontWeight={'bold'}
+              >
+                &nbsp;Positive
+              </Text>
             )}
-            <Box>
-              <Stack direction={{ base: 'column', md: 'row' }}>
-                <Button isFullWidth={isMobile} as={NextLink} href={'/HAS'}>
-                  Book a women&apos;s health appointment
-                </Button>
-                <Button
-                  isFullWidth={isMobile}
-                  as={NextLink}
-                  href={`/review/${clinic?.id}`}
-                  variant={'outline'}
-                >
-                  Write a review for this clinic
-                </Button>
-              </Stack>
+          </Box>
+          <Box
+            bg="brand.primary.50"
+            my={'2rem'}
+            p={'1.25rem'}
+            borderRadius={'0.5rem'}
+          >
+            <Box mb={'0.5rem'} display={'flex'} alignItems={'center'}>
+              <Icon as={BsStars} aria-hidden fontSize="1rem" />
+              <Text textStyle={'caption-2'} as="span" ml={'0.5rem'}>
+                AI-generated summary
+              </Text>
             </Box>
-          </Flex>
-        </Stack>
-      </LandingSection>
-      <LandingSection
-        bg="#FFFFFF"
-        pt={{ base: '0.5rem', md: '1rem' }}
-        px={0}
-        pb={0}
-      >
-        <Text
-          as="h3"
-          textStyle={{
-            base: 'h4',
-            md: 'h4',
-          }}
-          color="base.content.strong"
-          py="1rem"
-        >
-          {`Here’s what visitors with women’s health concerns said about ${clinic?.name}`}
-        </Text>
-        <Box>
+
+            <Text fontSize={'sm'}>{clinic?.specialReview}</Text>
+          </Box>
+          <Divider />
+        </LandingSection>
+        <LandingSection bg="#FFFFFF" px={0}>
           <Text
             as="h3"
             textStyle={{
@@ -168,70 +220,20 @@ const IndividualClinicPage = () => {
             }}
             color="base.content.strong"
           >
-            {clinic?.rating}%
+            {`All reviews for ${clinic?.name} `}
           </Text>
-          <Text as="span" fontSize="sm">
-            of reviewers rated their experience as
-          </Text>
-          {clinic?.negSentiment ? (
-            <Text
-              as="span"
-              fontSize="sm"
-              color={'orange.500'}
-              fontWeight={'bold'}
-            >
-              &nbsp;Positive
-            </Text>
-          ) : (
-            <Text
-              as="span"
-              fontSize="sm"
-              color={'green.500'}
-              fontWeight={'bold'}
-            >
-              &nbsp;Positive
-            </Text>
-          )}
-        </Box>
-        <Box
-          bg="brand.primary.50"
-          my={'2rem'}
-          p={'1.25rem'}
-          borderRadius={'0.5rem'}
-        >
-          <Box mb={'0.5rem'} display={'flex'} alignItems={'center'}>
-            <Icon as={BsStars} aria-hidden fontSize="1rem" />
-            <Text textStyle={'caption-2'} as="span" ml={'0.5rem'}>
-              AI-generated summary
-            </Text>
+          <Box pt={'2rem'} pb={'0.45rem'}>
+            <Toggle
+              description=""
+              label="Verified reviews only"
+              onChange={() => {
+                setVerified((verified) => !verified)
+              }}
+            />
           </Box>
-
-          <Text fontSize={'sm'}>{clinic?.specialReview}</Text>
-        </Box>
-        <Divider />
-      </LandingSection>
-      <LandingSection bg="#FFFFFF" px={0}>
-        <Text
-          as="h3"
-          textStyle={{
-            base: 'h4',
-            md: 'h4',
-          }}
-          color="base.content.strong"
-        >
-          {`All reviews for ${clinic?.name} `}
-        </Text>
-        <Box pt={'2rem'} pb={'0.45rem'}>
-          <Toggle
-            description=""
-            label="Verified reviews only"
-            onChange={() => {
-              setVerified((verified) => !verified)
-            }}
-          />
-        </Box>
-        <ReviewList reviewList={reviews} />
-      </LandingSection>
+          <ReviewList reviewList={reviews} />
+        </LandingSection>
+      </Box>
     </>
   )
 }

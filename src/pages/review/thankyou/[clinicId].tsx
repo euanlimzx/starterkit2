@@ -64,41 +64,43 @@ const createReview = () => {
     clinicId: clinicId,
   })[0]
   return (
-    <LandingSection bg="#FFFFFF" pt={{ base: '2rem' }} px={0}>
-      <Stack
-        direction={{ base: 'column', lg: 'row' }}
-        align="center"
-        spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
-      >
-        <Flex flexDir="column" flex={1}>
-          <Text
-            as="h1"
-            textStyle={'h4'}
-            color="base.content.strong"
-            textAlign={'center'}
-          >
-            {`Thanks for reviewing ${clinic?.name}!`}
-          </Text>
-          <SectionBodyText mt="1rem" textAlign={'center'}>
-            Your submission will appear publicly after review.
-          </SectionBodyText>
-          <Box mt="2.5rem">
-            <Button as={NextLink} href={'/'} width={'100%'}>
-              Back to Home
-            </Button>
-            <Button
-              as={NextLink}
-              href={'/HAS'}
-              width={'100%'}
-              variant={'clear'}
-              mt={'1rem'}
+    <Box mx={{ base: '0rem', md: '16rem' }}>
+      <LandingSection bg="#FFFFFF" pt={{ base: '2rem' }} px={0}>
+        <Stack
+          direction={{ base: 'column', lg: 'row' }}
+          align="center"
+          spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
+        >
+          <Flex flexDir="column" flex={1}>
+            <Text
+              as="h1"
+              textStyle={'h4'}
+              color="base.content.strong"
+              textAlign={'center'}
             >
-              Or, book another visit at this clinic
-            </Button>
-          </Box>
-        </Flex>
-      </Stack>
-    </LandingSection>
+              {`Thanks for reviewing ${clinic?.name}!`}
+            </Text>
+            <SectionBodyText mt="1rem" textAlign={'center'}>
+              Your submission will appear publicly after review.
+            </SectionBodyText>
+            <Box mt="2.5rem">
+              <Button as={NextLink} href={'/'} width={'100%'}>
+                Back to Home
+              </Button>
+              <Button
+                as={NextLink}
+                href={'/HAS'}
+                width={'100%'}
+                variant={'clear'}
+                mt={'1rem'}
+              >
+                Or, book another visit at this clinic
+              </Button>
+            </Box>
+          </Flex>
+        </Stack>
+      </LandingSection>
+    </Box>
   )
 }
 
