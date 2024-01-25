@@ -1,5 +1,6 @@
 import { Flex, Stack, Text, Alert, AlertIcon } from '@chakra-ui/react'
 import NextLink from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 import ConcernChecklist from '~/components/createReview/ConcernChecklist'
 import { LandingSection, SectionBodyText } from '~/features/landing/components'
@@ -60,6 +61,7 @@ const CreateReview = () => {
   // ]
   const router = useRouter()
   const clinicId = router.query.clinicId
+  const verified = useSearchParams().get('verified') ? true : false
   const clinic = trpc.clinic.fetchClinicById.useSuspenseQuery({
     clinicId: clinicId,
   })[0]
@@ -78,10 +80,13 @@ const CreateReview = () => {
           <SectionBodyText my="1.5rem">
             Let us know how your consultation went.
           </SectionBodyText>
-          <Alert status="warning" mb="1.5rem">
-            <AlertIcon />
-            You are leaving a review as an unverified visitor.
-          </Alert>
+          {!verified && (
+            <Alert status="warning" mb="1.5rem">
+              <AlertIcon />
+              You are leaving a review as an unverified visitor.
+            </Alert>
+          )}
+
           <ConcernChecklist clinicId={clinicId} />
         </Flex>
       </Stack>

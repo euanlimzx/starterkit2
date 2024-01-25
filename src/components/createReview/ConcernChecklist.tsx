@@ -1,21 +1,15 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  Stack,
-  Text,
-  Textarea,
-  FormControl,
-} from '@chakra-ui/react'
+import { Box, Button, Checkbox, Text, Textarea } from '@chakra-ui/react'
+import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { trpc } from '~/utils/trpc'
-import ReviewTextArea from './ReviewTextArea'
 import Checklist from './Checklist'
+import ReviewTextArea from './ReviewTextArea'
 
 function ConcernChecklist({ clinicId }: { clinicId: string }) {
   const router = useRouter()
+  const isVerified = useSearchParams().get('verified') ? true : false
+  console.log(isVerified)
   // first section
   const [concernChecklistInvalid, setConcernChecklistInvalid] = useState(false)
   const [concernValues, setConcernValues] = useState([])
@@ -59,7 +53,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
         // console.log({
         clinicId: clinicId,
         negSentiment: false,
-        verified: false,
+        verified: isVerified,
         concernValues: concernValues,
         // otherConcerns: otherContent,
         descriptionValues: descriptionValues,
@@ -71,7 +65,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
         // console.log({
         clinicId: clinicId,
         negSentiment: true,
-        verified: false,
+        verified: isVerified,
         concernValues: concernValues,
         // otherConcerns: '',
         descriptionValues: descriptionValues,
