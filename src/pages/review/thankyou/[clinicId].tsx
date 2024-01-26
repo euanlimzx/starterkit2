@@ -84,7 +84,12 @@ const createReview = () => {
               Your submission will appear publicly after review.
             </SectionBodyText>
             <Box mt="2.5rem">
-              <Button as={NextLink} href={'/'} width={'100%'}>
+              <Button
+                as={NextLink}
+                href={'/'}
+                width={'100%'}
+                textColor={'white'}
+              >
                 Back to Home
               </Button>
               <Button

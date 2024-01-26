@@ -128,7 +128,12 @@ const IndividualClinicPage = () => {
               )}
               <Box>
                 <Stack direction={{ base: 'column', md: 'row' }}>
-                  <Button isFullWidth={isMobile} as={NextLink} href={'/HAS'}>
+                  <Button
+                    isFullWidth={isMobile}
+                    as={NextLink}
+                    href={'/HAS'}
+                    textColor={'white'}
+                  >
                     Book a women&apos;s health appointment
                   </Button>
                   <Button

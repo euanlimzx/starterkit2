@@ -149,6 +149,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
           }}
           width={'100%'}
           size="lg"
+          textColor={'white'}
         >
           Submit Review
         </Button>
