@@ -24,7 +24,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
       </Head>
 
       <main>
-        <Banner variant="error" size={'sm'}>
+        <Banner variant="info" size={'sm'}>
           <Text as="span">
             This is an exploratory prototype that was built for&nbsp;
             <Link href="https://hack.gov.sg/" target="_blank">

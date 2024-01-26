@@ -281,7 +281,8 @@ export const colors = {
   },
   utility: {
     feedback: {
-      info: '#1361F0',
+      // info: '#1361F0',
+      info: '#F35A2B',
       'info-subtle': '#F7F9FE',
       warning: '#FFDA68',
       'warning-subtle': '#fffae1',

@@ -4,7 +4,7 @@ const Subheader = ({ children }) => {
   return (
     <Text
       as="span"
-      fontSize={{ base: 'md', md: '4xl' }}
+      fontSize={{ base: 'xl', md: '4xl' }}
       lineHeight={'1.2'}
       letterSpacing={'-0.01em'}
       color={'#F35A2B'}
