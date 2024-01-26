@@ -51,10 +51,17 @@ const Test = () => {
   //   phrase: 'dr lim was amazing ngl',
   // })
   // const getSentiment = () => [console.log(data)]
+
+  const createReview = trpc.review.createMany.useMutation()
+  const createReviewButton = () => {
+    createReview.mutate({
+      clinicId: '61f4d8d9-4acc-47db-b874-2f4460717792',
+    })
+  }
   return (
     <>
       <h1>these buttons are here just to test my api routes hehe</h1>
-      {/* <Button onClick={getSentiment}>click me</Button> */}
+      <Button onClick={createReviewButton}>click me</Button>
       {/* <Stack gap={4} direction={'row'}>
         <Button onClick={fetchUsers}>
           Click here to fetch a list of users

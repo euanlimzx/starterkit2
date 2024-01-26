@@ -8,6 +8,7 @@ export const createClinicSchema = z.object({
   negSentiment: z.boolean(),
   region: z.string(),
   specialReview: z.string(),
+  clinicConcerns: z.string().array(),
 })
 
 export const createReviewSchema = z.object({

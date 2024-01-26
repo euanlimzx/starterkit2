@@ -14,7 +14,6 @@ import { useRouter } from 'next/router'
 const ClinicCard = (props) => {
   const router = useRouter()
   const clinicData = props.clinicData
-
   return (
     <Box
       py={'0.5rem'}

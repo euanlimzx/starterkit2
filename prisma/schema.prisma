@@ -16,15 +16,16 @@ model VerificationToken {
 }
 
 model Clinic {
-  id            String   @id @default(cuid())
-  name          String   @unique
-  address       String
-  femalePrac    Boolean
-  negSentiment  Boolean
-  rating        String
-  region        String
-  specialReview String
-  reviews       Review[]
+  id             String   @id @default(cuid())
+  name           String   @unique
+  address        String
+  femalePrac     Boolean
+  negSentiment   Boolean
+  rating         String
+  region         String
+  specialReview  String
+  clinicConcerns String[]
+  reviews        Review[]
 }
 
 model Review {

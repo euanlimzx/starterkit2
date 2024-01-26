@@ -124,8 +124,11 @@ export const clinicRouter = router({
       }
 
       const reviews = await ctx.prisma.review.findMany({
-        where: { clinicId: input.clinicId },
+        where: {
+          clinicId: input.clinicId,
+        },
       })
+
       if (reviews.length == 0) {
         return 'There are no reviews for this clinic'
       } else {
@@ -148,6 +151,7 @@ export const clinicRouter = router({
             },
           ],
         })
+
         const updateClinic = await ctx.prisma.clinic.update({
           where: {
             id: input.clinicId,

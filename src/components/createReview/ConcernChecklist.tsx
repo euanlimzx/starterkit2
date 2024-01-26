@@ -5,6 +5,8 @@ import { useState, useRef } from 'react'
 import { trpc } from '~/utils/trpc'
 import Checklist from './Checklist'
 import ReviewTextArea from './ReviewTextArea'
+import { update } from 'lodash'
+import { clinicRouter } from '~/server/modules/clinic/clinic.router'
 
 function ConcernChecklist({ clinicId }: { clinicId: string }) {
   const router = useRouter()
@@ -38,6 +40,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
   const textAreaRef = useRef(null)
   const submitReview = trpc.review.createReview.useMutation()
   const summariseReviews = trpc.clinic.summariseReviews.useMutation()
+  const updateConcerns = trpc.review.updateConcernValues.useMutation()
   const handleSubmit = async () => {
     if (concernValues.length == 0 && otherContent.length == 0) {
       setConcernChecklistInvalid(true)
@@ -76,7 +79,13 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
       })
       console.log(submittedReview)
     }
+
     await router.push(`/review/thankyou/${clinicId}`)
+    const updatedConcernValues = await updateConcerns.mutateAsync({
+      concernValues: concernValues,
+      clinicId: clinicId,
+    })
+    console.log(updatedConcernValues)
     const summarised = await summariseReviews.mutateAsync({
       clinicId: clinicId,
     })
