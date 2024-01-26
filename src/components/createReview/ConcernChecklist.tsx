@@ -70,7 +70,7 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
         negSentiment: true,
         verified: isVerified,
         concernValues: concernValues,
-        otherConcerns: '',
+        others: '',
         descriptionValues: descriptionValues,
         reviewContent: reviewContent,
       })
