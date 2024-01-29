@@ -34,6 +34,11 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
     'Empathetic',
     'Non-judgemental',
   ]
+  const handleDescriptions = (e) => {
+    setDescriptionValues(e)
+    setNoneChecked(false)
+  }
+  const [noneChecked, setNoneChecked] = useState(false)
   //third section
   const [reviewContent, setReviewContent] = useState('')
   const [TextAreaIsInvalid, setTextAreaIsInvalid] = useState(false)
@@ -136,10 +141,20 @@ function ConcernChecklist({ clinicId }: { clinicId: string }) {
         </Text>
         <Checklist
           checklistValues={descriptionValues}
-          setChecklistValues={setDescriptionValues}
+          setChecklistValues={handleDescriptions}
           checklistList={descriptionList}
           ChecklistIsInvalid={false}
         />
+        <Checkbox
+          onChange={() => {
+            setDescriptionValues([])
+            setNoneChecked(true)
+          }}
+          mt={'0.75rem'}
+          isChecked={noneChecked}
+        >
+          None of the above
+        </Checkbox>
       </Box>
       <Box ref={textAreaRef}></Box>
       <ReviewTextArea
