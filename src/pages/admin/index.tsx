@@ -3,7 +3,7 @@ import { trpc } from '~/utils/trpc'
 
 const Test = () => {
   // //chatgpt summarise route
-  // const summariseClinicAPI = trpc.clinic.summariseReviews.useMutation()
+  const summariseClinicAPI = trpc.clinic.summariseReviews.useMutation()
   // const summariseClinic = async () => {
   //   const data = await summariseClinicAPI.mutate({
   //     clinicId: '90a2b1c3-6f87-402e-a8b3-5cf2f4c28a94',
@@ -30,13 +30,16 @@ const Test = () => {
   //   await refetchUsers()
   //   console.log(userData)
   // }
-  // //fetch Clinics
-  // const { data: clinicData, refetch: refetchClinics } =
-  //   trpc.clinic.fetchClinics.useQuery()
-  // const fetchClinics = async () => {
-  //   await refetchClinics()
-  //   console.log(clinicData)
-  // }
+  //fetch Clinics
+  const { data: clinicData, refetch: refetchClinics } =
+    trpc.clinic.fetchClinics.useQuery()
+  const fetchClinics = async () => {
+    const clinics = await refetchClinics()
+
+    return await clinics.data.map((clinic) => {
+      return summariseClinicAPI.mutate({ clinicId: clinic.id })
+    })
+  }
   // //fetch Clinic by Id
   // const { data: clinicByIdData, refetch: refectchClinicById } =
   //   trpc.clinic.fetchClinicById.useQuery({
@@ -61,7 +64,7 @@ const Test = () => {
   return (
     <>
       <h1>these buttons are here just to test my api routes hehe</h1>
-      <Button onClick={createReviewButton}>click me</Button>
+      <Button onClick={fetchClinics}>click me</Button>
       {/* <Stack gap={4} direction={'row'}>
         <Button onClick={fetchUsers}>
           Click here to fetch a list of users

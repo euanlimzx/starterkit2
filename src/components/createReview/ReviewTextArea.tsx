@@ -36,10 +36,10 @@ function ReviewTextArea({
             height={'auto'}
             rows={10}
             size={'xs'}
-            maxLength={200}
+            maxLength={500}
           />
           <Text textStyle={'caption-2'} pt="0.5rem">
-            {200 - ReviewContent.length} characters left
+            {500 - ReviewContent.length} characters left
           </Text>
         </Box>
       </FormControl>

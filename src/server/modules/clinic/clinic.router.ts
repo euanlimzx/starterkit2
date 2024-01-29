@@ -147,7 +147,7 @@ export const clinicRouter = router({
             },
             {
               role: 'user',
-              content: `Based on the following list of reviews, summarize how people generally feel about the clinic. Here are the reviews ${reviewContentList}`,
+              content: `Based on the following list of reviews, summarize how people generally feel about the clinic. Keep your review short, not exceeding more than 30 words. Here are the reviews ${reviewContentList}`,
             },
           ],
         })

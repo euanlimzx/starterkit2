@@ -19,7 +19,6 @@ const SignIn: NextPageWithLayout = () => {
   return (
     <PublicPageWrapper strict>
       <Flex flexDir="column" h="inherit" minH="$100vh">
-        <RestrictedGovtMasthead />
         <BaseGridLayout flex={1}>
           <NonMobileSidebarGridArea>
             <LoginImageSvgr aria-hidden />
