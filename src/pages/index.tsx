@@ -271,7 +271,7 @@ const LandingPage = () => {
                   <ModalOverlay />
                   <ModalContent>
                     <ModalCloseButton />
-                    <ModalHeader>Preferred locations</ModalHeader>
+                    <ModalHeader>Filter by location</ModalHeader>
                     <ModalBody>
                       <Checklist
                         ChecklistIsInvalid={false}
