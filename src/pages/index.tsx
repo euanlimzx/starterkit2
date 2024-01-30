@@ -1,9 +1,21 @@
-import { Box, Flex, Stack, Text } from '@chakra-ui/react'
+import { Box, Flex, Stack, Text, Button } from '@chakra-ui/react'
 import { MultiSelect, Toggle } from '@opengovsg/design-system-react'
 import { useEffect, useState } from 'react'
 import ClinicList from '~/components/Clinic/ClinicList'
 import { LandingSection, SectionBodyText } from '~/features/landing/components'
 import { trpc } from '~/utils/trpc'
+import { HiAdjustmentsHorizontal } from 'react-icons/hi2'
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from '@chakra-ui/react'
+import Checklist from '~/components/createReview/Checklist'
 
 export type Clinic = {
   id: string
@@ -79,6 +91,10 @@ const LandingPage = () => {
   //   },
   // ]
 
+  //for location shit
+  const [locations, setLocations] = useState([])
+  const locationsList = ['Central', 'North', 'East', 'West', 'Northeast']
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const clinicDataList = trpc.clinic.fetchClinics.useSuspenseQuery()[0]
 
   const showClinicCopy = () => {
@@ -121,20 +137,31 @@ const LandingPage = () => {
     return concernFilteredClinics
   }
 
+  const filterRegion = (clinicDataList: clinicDataList) => {
+    const regionFilteredClinics = clinicDataList.filter((clinic) => {
+      return locations.includes(clinic.region)
+    })
+    return regionFilteredClinics
+  }
+
   const handleSearch = () => {
-    let searchedClinics = filterFemalePrac(clinicDataList)
+    let femaleFilteredClinics = filterFemalePrac(clinicDataList)
     setFilteredSearch(false)
     if (multiselectValues.length != 0) {
-      searchedClinics = filterConcern(searchedClinics)
+      femaleFilteredClinics = filterConcern(femaleFilteredClinics)
       setFilteredSearch(true)
     }
-    setClinics(searchedClinics.sort(sortByRating))
+    let finalClinics = femaleFilteredClinics
+    if (locations.length != 0) {
+      finalClinics = filterRegion(femaleFilteredClinics)
+    }
+    setClinics(finalClinics.sort(sortByRating))
   }
   const [multiselectValues, setMultiSelectValues] = useState([])
   const [female, setFemale] = useState(false)
   const [clinics, setClinics] = useState(clinicDataList.sort(sortByRating))
   const [filteredSeach, setFilteredSearch] = useState(false)
-  useEffect(handleSearch, [multiselectValues, female])
+  useEffect(handleSearch, [multiselectValues, female, locations])
 
   return (
     <>
@@ -226,6 +253,42 @@ const LandingPage = () => {
                   }}
                 />
               </Box>
+              <Box
+                display="flex"
+                justifyContent={'end'}
+                alignItems={'end'}
+                py={'0.5rem'}
+              >
+                <Button
+                  leftIcon={<HiAdjustmentsHorizontal fontSize="1.5rem" />}
+                  variant={'clear'}
+                  px={0}
+                  onClick={onOpen}
+                >
+                  <Text textAlign={'end'}>Filter results</Text>
+                </Button>
+                <Modal isOpen={isOpen} onClose={onClose} isCentered>
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalCloseButton />
+                    <ModalHeader>Preferred locations</ModalHeader>
+                    <ModalBody>
+                      <Checklist
+                        ChecklistIsInvalid={false}
+                        checklistList={locationsList}
+                        checklistValues={locations}
+                        setChecklistValues={setLocations}
+                      />
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button textColor={'white'} mr={3} onClick={onClose}>
+                        Close
+                      </Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
+              </Box>
+
               <ClinicList clinics={clinics} />
             </Flex>
           </Stack>

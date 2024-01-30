@@ -9,7 +9,7 @@ const ClinicList = ({ clinics }: { clinics: clinicDataList }) => {
   if (clinics.length <= 3) {
     return (
       <>
-        <Box pt={'1rem'}>
+        <Box>
           {clinics.map((clinic) => {
             return <ClinicCard key={clinic.id} clinicData={clinic} />
           })}
@@ -19,7 +19,7 @@ const ClinicList = ({ clinics }: { clinics: clinicDataList }) => {
   } else {
     return (
       <>
-        <Box pt={'1rem'}>
+        <Box>
           {clinics.slice(0, 3).map((clinic) => {
             return <ClinicCard key={clinic.id} clinicData={clinic} />
           })}

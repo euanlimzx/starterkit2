@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Stack, Text, Image, Circle } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { LandingSection, SectionBodyText } from '~/features/landing/components'
 import { useRouter } from 'next/router'
@@ -67,10 +67,19 @@ const createReview = () => {
     <Box mx={{ base: '0rem', md: '16rem' }}>
       <LandingSection bg="#FFFFFF" pt={{ base: '2rem' }} px={0}>
         <Stack
-          direction={{ base: 'column', lg: 'row' }}
+          direction={{ base: 'column' }}
           align="center"
-          spacing={{ base: '1.5rem', md: '3.125rem', lg: '7.5rem' }}
+          spacing={{ base: '1.5rem', md: '3.125rem' }}
         >
+          <Image
+            style={{ maxWidth: '100%' }}
+            aria-hidden
+            width="250"
+            height="300"
+            src="/assets/thankyou.svg"
+            alt="thankyou image"
+          />
+
           <Flex flexDir="column" flex={1}>
             <Text
               as="h1"
