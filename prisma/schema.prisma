@@ -29,16 +29,24 @@ model Clinic {
 }
 
 model Review {
-  id                String   @id @default(cuid())
+  id                String       @id @default(cuid())
   verified          Boolean
   clinicId          String
-  date              DateTime @default(now())
+  date              DateTime     @default(now())
   negSentiment      Boolean
   concernValues     String[]
-  others            String   @default("")
+  others            String       @default("")
   descriptionValues String[]
   reviewContent     String
-  clinic            Clinic   @relation(fields: [clinicId], references: [id])
+  clinic            Clinic       @relation(fields: [clinicId], references: [id])
+  ClinicReply       ClinicReply?
+}
+
+model ClinicReply {
+  id       String @id @default(cuid())
+  reply    String
+  reviewId String @unique
+  review   Review @relation(fields: [reviewId], references: [id])
 }
 
 model User {

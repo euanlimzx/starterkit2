@@ -26,93 +26,112 @@ const ReviewCard = ({ review }: { review: review }) => {
   }
 
   return (
-    <Box pt={'2.5rem'}>
-      <Stack>
-        <Box>
-          {' '}
-          {review.negSentiment ? (
-            <Text fontSize="sm" color={'orange.300'} fontWeight={'bold'}>
-              Mixed
-            </Text>
-          ) : (
-            <Text fontSize="sm" color={'green.400'} fontWeight={'bold'}>
-              Positive
-            </Text>
-          )}
-          {review.verified ? (
-            <>
-              <Box display="flex" alignItems={'center'}>
-                <Text
-                  textStyle="caption-2"
-                  color="brand.secondary.500"
-                  as="span"
-                >
-                  {timeAgo(review.date)}
-                  <TouchableTooltip
-                    label="The reviewer has been verified to have visited the clinic"
-                    placement={'top'}
-                  >
-                    <Icon
-                      as={MdVerified}
-                      aria-hidden
-                      fontSize="1rem"
-                      color="blue.500"
-                      mx="0.25rem"
-                    />
-                  </TouchableTooltip>
-                </Text>
-              </Box>
-            </>
-          ) : (
-            <>
-              <Text fontSize="xs" color="brand.secondary.500">
-                {timeAgo(review.date)}
-              </Text>
-            </>
-          )}
-        </Box>
-
-        <Box>
-          <Text
-            textStyle={'caption-1'}
-            fontWeight={'semibold'}
-            color={'grey.500'}
-          >
-            Visited for:
-          </Text>
-          <Text textStyle={'caption-2'} color={'grey.400'} as="span">
-            {review.concernValues
-              .map((concern) => {
-                return `${concern}`
-              })
-              .join(', ')}
-          </Text>
-          {review.others.length > 0 && (
-            <Text textStyle={'caption-2'} color={'grey.400'} as="span">
-              {`, Others: ${review.others}`}
-            </Text>
-          )}
-        </Box>
-        <Text>{review.reviewContent}</Text>
-        {review.descriptionValues && (
+    <>
+      <Box pt={'2.5rem'}>
+        <Stack>
           <Box>
-            {review.descriptionValues.map((tag, index) => {
-              return (
-                <Tag
-                  colorScheme="gray"
-                  borderRadius={'2rem'}
-                  mx="2px"
-                  my="4px"
-                  key={index}
-                >
-                  {tag}
-                </Tag>
-              )
-            })}
+            {' '}
+            {review.negSentiment ? (
+              <Text fontSize="sm" color={'orange.300'} fontWeight={'bold'}>
+                Mixed
+              </Text>
+            ) : (
+              <Text fontSize="sm" color={'green.400'} fontWeight={'bold'}>
+                Positive
+              </Text>
+            )}
+            {review.verified ? (
+              <>
+                <Box display="flex" alignItems={'center'}>
+                  <Text
+                    textStyle="caption-2"
+                    color="brand.secondary.500"
+                    as="span"
+                  >
+                    {timeAgo(review.date)}
+                    <TouchableTooltip
+                      label="The reviewer has been verified to have visited the clinic"
+                      placement={'top'}
+                    >
+                      <Icon
+                        as={MdVerified}
+                        aria-hidden
+                        fontSize="1rem"
+                        color="blue.500"
+                        mx="0.25rem"
+                      />
+                    </TouchableTooltip>
+                  </Text>
+                </Box>
+              </>
+            ) : (
+              <>
+                <Text fontSize="xs" color="brand.secondary.500">
+                  {timeAgo(review.date)}
+                </Text>
+              </>
+            )}
           </Box>
-        )}
-      </Stack>
-    </Box>
+
+          <Box>
+            <Text
+              textStyle={'caption-1'}
+              fontWeight={'semibold'}
+              color={'grey.500'}
+            >
+              Visited for:
+            </Text>
+            <Text textStyle={'caption-2'} color={'grey.400'} as="span">
+              {review.concernValues
+                .map((concern) => {
+                  return `${concern}`
+                })
+                .join(', ')}
+            </Text>
+            {review.others.length > 0 && (
+              <Text textStyle={'caption-2'} color={'grey.400'} as="span">
+                {`, Others: ${review.others}`}
+              </Text>
+            )}
+          </Box>
+          <Text>{review.reviewContent}</Text>
+          {review.descriptionValues && (
+            <Box>
+              {review.descriptionValues.map((tag, index) => {
+                return (
+                  <Tag
+                    colorScheme="gray"
+                    borderRadius={'2rem'}
+                    mx="2px"
+                    my="4px"
+                    key={index}
+                  >
+                    {tag}
+                  </Tag>
+                )
+              })}
+            </Box>
+          )}
+        </Stack>
+      </Box>
+      {review.ClinicReply && (
+        <Box bg="#F7F9FE" my={'1rem'} p={'1.25rem'}>
+          <Box mb={'0.5rem'} display={'flex'} alignItems={'center'}>
+            <Text
+              textStyle="body-2"
+              as="span"
+              textColor={'#666C7A'}
+              fontWeight={'medium'}
+            >
+              Response from the clinic:
+            </Text>
+          </Box>
+          <Text textColor={'#454953'} fontSize={'sm'}>
+            {review.ClinicReply.reply}
+          </Text>
+        </Box>
+      )}
+    </>
   )
 }
 

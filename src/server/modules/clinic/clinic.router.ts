@@ -103,7 +103,11 @@ export const clinicRouter = router({
           id: input.clinicId,
         },
         include: {
-          reviews: true,
+          reviews: {
+            include: {
+              ClinicReply: true,
+            },
+          },
         },
       })
     }),

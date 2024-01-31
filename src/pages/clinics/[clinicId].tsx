@@ -9,6 +9,11 @@ import { useState, useEffect } from 'react'
 import { trpc } from '~/utils/trpc'
 import { BsStars } from 'react-icons/bs'
 
+export type ClinicReply = {
+  id: string
+  reply: string
+}
+
 export type review = {
   id: string
   verified: boolean
@@ -18,6 +23,7 @@ export type review = {
   concernValues: string[]
   descriptionValues: string[]
   date: Date
+  ClinicReply: ClinicReply
 }
 export type reviewList = review[]
 const IndividualClinicPage = () => {
@@ -71,6 +77,7 @@ const IndividualClinicPage = () => {
   const clinic = trpc.clinic.fetchClinicById.useSuspenseQuery({
     clinicId: clinicId,
   })[0]
+  console.log(clinic?.reviews)
   const reviewList = clinic.reviews
   const [verified, setVerified] = useState(false)
   const [reviews, setReviews] = useState(reviewList)

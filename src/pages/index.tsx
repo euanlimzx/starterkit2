@@ -99,7 +99,7 @@ const LandingPage = () => {
 
   const showClinicCopy = () => {
     if (multiselectValues.length == 1) {
-      return `Clinics that have addressed concerns on ${multiselectValues[0]} before`
+      return `Clinics serving ${multiselectValues[0]} concerns`
     } else {
       const shortArr = multiselectValues.slice(0, -1)
       const regions = shortArr
@@ -108,9 +108,9 @@ const LandingPage = () => {
         })
         .join(', ')
 
-      return `Clinics that have addressed concerns on ${regions} and ${
+      return `Clinics serving ${regions} and ${
         multiselectValues.slice(-1)[0]
-      } before`
+      } concerns`
     }
   }
   const sortByRating = (a: Clinic, b: Clinic) => {
