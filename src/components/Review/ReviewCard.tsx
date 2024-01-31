@@ -25,6 +25,14 @@ const ReviewCard = ({ review }: { review: review }) => {
     }
   }
 
+  const comma = () => {
+    if (review.concernValues.length != 0 && review.others.length != 0) {
+      return ','
+    } else {
+      return ''
+    }
+  }
+
   return (
     <>
       <Box pt={'2.5rem'}>
@@ -90,7 +98,7 @@ const ReviewCard = ({ review }: { review: review }) => {
             </Text>
             {review.others.length > 0 && (
               <Text textStyle={'caption-2'} color={'grey.400'} as="span">
-                {`, Others: ${review.others}`}
+                {`${comma()} Others: ${review.others}`}
               </Text>
             )}
           </Box>
