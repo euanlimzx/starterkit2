@@ -1,4 +1,4 @@
-import { Box, Flex, Stack, Text, Button } from '@chakra-ui/react'
+import { Box, Flex, Stack, Text, Button, Image } from '@chakra-ui/react'
 import { MultiSelect, Toggle } from '@opengovsg/design-system-react'
 import { useEffect, useState } from 'react'
 import ClinicList from '~/components/Clinic/ClinicList'
@@ -183,7 +183,7 @@ const LandingPage = () => {
                 textAlign={{ base: 'left', md: 'center' }}
                 color="base.content.strong"
               >
-                Find a doctor for your women&apos;s health concerns.
+                Let&apos;s get you a doctor that women trust.
               </Text>
               <SectionBodyText
                 mt="1rem"
@@ -224,11 +224,7 @@ const LandingPage = () => {
           </Stack>
         </LandingSection>
       </Box>
-      <LandingSection
-        bg="base.canvas.brand-subtle"
-        pt={{ base: '2rem', md: '4rem' }}
-        px={0}
-      >
+      <LandingSection pt={{ base: '2rem', md: '4rem' }} px={0}>
         <Box mx={{ base: '0rem', md: '16rem' }}>
           <Stack
             direction={{ base: 'column', lg: 'row' }}
@@ -239,7 +235,7 @@ const LandingPage = () => {
               <Text as="h1" textStyle={'h4'} color="base.content.strong">
                 {filteredSeach
                   ? showClinicCopy()
-                  : 'Find a clinic that meets your needs based on our verified reviews'}
+                  : 'Find empathetic and knowledgeable doctors based on our verified reviews'}
               </Text>
               <SectionBodyText mt="0.5rem">
                 Select a clinic to read their reviews
