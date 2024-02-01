@@ -46,6 +46,16 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
               her
             </Text>
           </Button>
+          <Box w={'100%'} display={'flex'} justifyContent={'end'}>
+            <Button
+              textColor={'white'}
+              as={NextLink}
+              target="_blank"
+              href={'https://go.gov.sg/askher-contact'}
+            >
+              Contact us!
+            </Button>
+          </Box>
         </Box>
         <Divider />
         <Box> {children}</Box>

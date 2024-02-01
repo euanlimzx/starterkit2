@@ -1,4 +1,4 @@
-import { Box, Stack, Text } from '@chakra-ui/react'
+import { Box, Stack, Text, Image } from '@chakra-ui/react'
 import { Button } from '@opengovsg/design-system-react'
 import { FaArrowRight } from 'react-icons/fa'
 
@@ -11,35 +11,34 @@ const First = () => {
       height="75vh"
     >
       <Box
-        width={{ base: '100%', md: '30%' }}
+        width={{ base: '85%', md: '50%' }}
         justifyContent={'center'}
-        alignItems={'center'}
+        alignItems={{ base: 'end', md: 'center' }}
+        pb={{ base: '5rem', md: '0rem' }}
         display={'flex'}
         height="100%"
       >
         <Stack
           direction={'column'}
-          alignItems={{ base: 'center', md: 'start' }}
-          ml={{ base: '', md: '10rem' }}
+          alignItems={{ base: 'start', md: 'start' }}
+          ml={{ base: '2rem', md: '10rem' }}
           spacing={0}
         >
           <Text
-            fontSize={{ base: '8xl', md: '10xl' }}
+            fontSize={{ base: '9xl', md: '10xl' }}
             fontWeight={'semibold'}
             color={'#F35A2B'}
             fontFamily={'DMSans'}
             lineHeight={'1'}
             letterSpacing={'-0.03em'}
-            textAlign={{ base: 'center', md: 'start' }}
+            textAlign={{ base: 'start', md: 'start' }}
           >
-            empowering your health choices
+            trusted answers on women&apos;s health
           </Text>
-          <Box my={'2rem'} fontSize={'lg'}>
-            <Text as="span">A&nbsp;</Text>
-            <Text as="span" fontWeight={'bold'}>
-              trusted&nbsp;
+          <Box my={'2rem'} fontSize={'xl'}>
+            <Text as="span">
+              info verified by doctors, reviews written by real women
             </Text>
-            <Text as="span">source for women</Text>
           </Box>
           <Button
             variant={'outline'}
