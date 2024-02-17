@@ -93,19 +93,6 @@ const IndividualClinicPage = () => {
   }
   useEffect(handleFilter, [verified])
 
-  const dictionaryMap = {
-    'e25c12d0-6ff4-4e22-a550-9b2d8d172c36':
-      'https://book-staging.health.gov.sg/offerings/99/institutions/1258/timeslots',
-    '61f4d8d9-4acc-47db-b874-2f4460717792':
-      'https://book-staging.health.gov.sg/offerings/99/institutions/1270/timeslots',
-    '72c3eaa0-8f57-4a8f-b4a2-9f830cc6b381':
-      'https://book-staging.health.gov.sg/offerings/99/institutions/1090/timeslots',
-    'c4f37e2b-1e6d-4678-aa0b-bb2d57828c6f':
-      'https://book-staging.health.gov.sg/offerings/99/institutions/576/timeslots',
-    '90a2b1c3-6f87-402e-a8b3-5cf2f4c28a94':
-      'https://book-staging.health.gov.sg/offerings/99/institutions/1395/timeslots',
-  }
-
   return (
     <>
       <Box mx={{ base: '0rem', md: '16rem' }}>
@@ -151,7 +138,7 @@ const IndividualClinicPage = () => {
                   <Button
                     isFullWidth={isMobile}
                     as={NextLink}
-                    href={dictionaryMap[`${clinic?.id}`]}
+                    href={'/HAS'}
                     textColor={'white'}
                   >
                     Book a women&apos;s health appointment

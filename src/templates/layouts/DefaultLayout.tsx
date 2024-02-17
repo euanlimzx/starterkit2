@@ -68,8 +68,14 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                 px: 0,
                 bg: '#FFFFFFF',
               }}
-              appName=""
+              appName="askher"
               appLink="/"
+              footerLinks={[
+                {
+                  href: '/askhertermsofuse.pdf',
+                  label: 'Terms of Use',
+                },
+              ]}
             />
           </Box>
         </AppGrid>

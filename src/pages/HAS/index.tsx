@@ -5,7 +5,7 @@ import { LandingSection, SectionBodyText } from '~/features/landing/components'
 
 const createReview = () => {
   return (
-    <Box mx={{ base: '0rem', md: '16rem' }}>
+    <Box mx={{ base: '0rem', md: '8rem' }} p={{ base: '2rem', md: '5rem' }}>
       <LandingSection bg="#FFFFFF" pt={{ base: '2rem', md: 0 }} px={0}>
         <Stack
           direction={{ base: 'column', lg: 'row' }}
@@ -21,10 +21,11 @@ const createReview = () => {
               }}
               color="base.content.strong"
             >
-              Ideally, this will bring you to HAS
+              Ideally, this will bring you to HAS, our health appointment system
             </Text>
             <SectionBodyText mt="1rem">
-              lets link this to a Figma preview if possible
+              This way, you will be able to book an appointment directly with
+              the clinic
             </SectionBodyText>
             <Box mt="2.5rem">
               <Button
